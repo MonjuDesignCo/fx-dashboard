@@ -357,7 +357,7 @@ function renderCalendar(){
               ${rankHtml(item.rank, item.forecast)}
             </div>
             <div class="kfx-vals">
-              <span class="v">市場<span>${item.forecast||'—'}</span></span>
+              ${item.forecast!=='要人発言'?`<span class="v">市場<span>${item.forecast||'—'}</span></span>`:''}
               <span class="v">前回<span>${item.prev||'—'}</span></span>
             </div>
           </div>
