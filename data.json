@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-18T00:11:09.222790+09:00",
+  "updated_at": "2026-05-18T00:33:40.359196+09:00",
   "weeks": [
     {
       "week_range": "4/1(水) — 4/5(日)",
@@ -987,8 +987,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-",
-              "prev": "+0.8%",
-              "_source": "kissfx"
+              "prev": "+0.8%"
             },
             {
               "time": "11:00",
@@ -998,8 +997,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "+6.0%",
-              "prev": "+5.7%",
-              "_source": "kissfx"
+              "prev": "+5.7%"
             },
             {
               "time": "16:35",
@@ -1009,8 +1007,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "17:30",
@@ -1020,8 +1017,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "23:00",
@@ -1031,8 +1027,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "34",
-              "prev": "34",
-              "_source": "kissfx"
+              "prev": "34"
             },
             {
               "time": "29:00",
@@ -1042,8 +1037,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "+586億",
-              "_source": "kissfx"
+              "prev": "+586億"
             },
             {
               "time": "29:00",
@@ -1053,8 +1047,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "翌07:45",
@@ -1064,8 +1057,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "+0.1%",
-              "_source": "kissfx"
+              "prev": "+0.1%"
             }
           ]
         },
@@ -1081,8 +1073,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "+0.1%",
-              "_source": "kissfx"
+              "prev": "+0.1%"
             },
             {
               "time": "08:50",
@@ -1092,8 +1083,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+0.4%",
-              "prev": "+0.3%",
-              "_source": "kissfx"
+              "prev": "+0.3%"
             },
             {
               "time": "08:50",
@@ -1101,10 +1091,9 @@
               "flag": "🌐",
               "name": "+0.8%",
               "importance": 1,
-              "rank": "+0.",
+              "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "08:50",
@@ -1112,10 +1101,9 @@
               "flag": "🌐",
               "name": "+3.1%",
               "importance": 1,
-              "rank": "+3.",
+              "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "09:30",
@@ -1125,8 +1113,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "80.1",
-              "_source": "kissfx"
+              "prev": "80.1"
             },
             {
               "time": "10:30",
@@ -1136,8 +1123,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "13:30",
@@ -1147,8 +1133,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-",
-              "prev": "-0.5%",
-              "_source": "kissfx"
+              "prev": "-0.5%"
             },
             {
               "time": "15:00",
@@ -1158,8 +1143,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-",
-              "prev": "4.4%",
-              "_source": "kissfx"
+              "prev": "4.4%"
             },
             {
               "time": "17:10",
@@ -1169,8 +1153,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "18:00",
@@ -1180,8 +1163,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "+115億",
-              "_source": "kissfx"
+              "prev": "+115億"
             },
             {
               "time": "21:00",
@@ -1191,8 +1173,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "21:30",
@@ -1202,8 +1183,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+0.6%",
-              "prev": "+0.9%",
-              "_source": "kissfx"
+              "prev": "+0.9%"
             },
             {
               "time": "23:00",
@@ -1213,8 +1193,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+1.4%",
-              "prev": "+1.5%",
-              "_source": "kissfx"
+              "prev": "+1.5%"
             },
             {
               "time": "翌08:00",
@@ -1224,8 +1203,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             }
           ]
         },
@@ -1241,8 +1219,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "09:30",
@@ -1252,8 +1229,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "-0.09%",
-              "_source": "kissfx"
+              "prev": "-0.09%"
             },
             {
               "time": "09:30",
@@ -1263,8 +1239,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "15:00",
@@ -1274,8 +1249,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+0.9%",
-              "prev": "+0.7%",
-              "_source": "kissfx"
+              "prev": "+0.7%"
             },
             {
               "time": "18:00",
@@ -1285,8 +1259,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+1.0%",
-              "prev": "+1.0%",
-              "_source": "kissfx"
+              "prev": "+1.0%"
             },
             {
               "time": "20:00",
@@ -1296,8 +1269,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "+1.7%",
-              "_source": "kissfx"
+              "prev": "+1.7%"
             },
             {
               "time": "22:15",
@@ -1307,8 +1279,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "23:30",
@@ -1318,8 +1289,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-",
-              "prev": "-430.6万",
-              "_source": "kissfx"
+              "prev": "-430.6万"
             },
             {
               "time": "26:00",
@@ -1329,8 +1299,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "160億ドル",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "27:00",
@@ -1340,8 +1309,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "27:00",
@@ -1351,8 +1319,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "27:00",
@@ -1362,8 +1329,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "大手金融決算",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "翌07:45",
@@ -1373,8 +1339,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "+6.98億",
-              "_source": "kissfx"
+              "prev": "+6.98億"
             }
           ]
         },
@@ -1390,8 +1355,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "+6.98億",
-              "_source": "kissfx"
+              "prev": "+6.98億"
             },
             {
               "time": "08:50",
@@ -1401,8 +1365,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-8.6%",
-              "prev": "+13.6%",
-              "_source": "kissfx"
+              "prev": "+13.6%"
             },
             {
               "time": "10:30",
@@ -1412,8 +1375,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "4.3%",
-              "prev": "4.3%",
-              "_source": "kissfx"
+              "prev": "4.3%"
             },
             {
               "time": "10:30",
@@ -1421,10 +1383,9 @@
               "flag": "🌐",
               "name": "+1.50万人",
               "importance": 1,
-              "rank": "+1.",
+              "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "10:30",
@@ -1434,8 +1395,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "16:15",
@@ -1445,8 +1405,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "52.4",
-              "prev": "52.8",
-              "_source": "kissfx"
+              "prev": "52.8"
             },
             {
               "time": "16:30",
@@ -1456,8 +1415,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "51.0",
-              "prev": "51.4",
-              "_source": "kissfx"
+              "prev": "51.4"
             },
             {
               "time": "17:00",
@@ -1467,8 +1425,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "51.8",
-              "prev": "52.2",
-              "_source": "kissfx"
+              "prev": "52.2"
             },
             {
               "time": "17:30",
@@ -1478,8 +1435,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "53.0",
-              "prev": "53.7",
-              "_source": "kissfx"
+              "prev": "53.7"
             },
             {
               "time": "19:00",
@@ -1489,8 +1445,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-40",
-              "prev": "-38",
-              "_source": "kissfx"
+              "prev": "-38"
             },
             {
               "time": "21:00",
@@ -1500,8 +1455,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "要人発言",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "21:30",
@@ -1511,8 +1465,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "21.0万件",
-              "prev": "21.1万件",
-              "_source": "kissfx"
+              "prev": "21.1万件"
             },
             {
               "time": "22:45",
@@ -1522,8 +1475,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "53.5",
-              "prev": "54.5",
-              "_source": "kissfx"
+              "prev": "54.5"
             },
             {
               "time": "23:30",
@@ -1533,8 +1485,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-",
-              "prev": "+85",
-              "_source": "kissfx"
+              "prev": "+85"
             },
             {
               "time": "24:00",
@@ -1544,8 +1495,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "+10",
-              "prev": "+10",
-              "_source": "kissfx"
+              "prev": "+10"
             },
             {
               "time": "26:00",
@@ -1555,8 +1505,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "190億ドル",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "翌07:45",
@@ -1566,8 +1515,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+0.5%",
-              "prev": "+0.9%",
-              "_source": "kissfx"
+              "prev": "+0.9%"
             }
           ]
         },
@@ -1583,8 +1531,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+0.5%",
-              "prev": "+0.9%",
-              "_source": "kissfx"
+              "prev": "+0.9%"
             },
             {
               "time": "08:01",
@@ -1594,8 +1541,7 @@
               "importance": 1,
               "rank": "",
               "forecast": "-28",
-              "prev": "-25",
-              "_source": "kissfx"
+              "prev": "-25"
             },
             {
               "time": "08:30",
@@ -1605,8 +1551,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+1.6%",
-              "prev": "+1.5%",
-              "_source": "kissfx"
+              "prev": "+1.5%"
             },
             {
               "time": "15:00",
@@ -1616,8 +1561,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "-0.6%",
-              "prev": "+0.7%",
-              "_source": "kissfx"
+              "prev": "+0.7%"
             },
             {
               "time": "17:00",
@@ -1627,8 +1571,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "84.2",
-              "prev": "84.4",
-              "_source": "kissfx"
+              "prev": "84.4"
             },
             {
               "time": "17:00",
@@ -1636,10 +1579,9 @@
               "flag": "🌐",
               "name": "85.1",
               "importance": 1,
-              "rank": "85.",
+              "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "17:00",
@@ -1647,10 +1589,9 @@
               "flag": "🌐",
               "name": "83.5",
               "importance": 1,
-              "rank": "83.",
+              "rank": "",
               "forecast": "-",
-              "prev": "-",
-              "_source": "kissfx"
+              "prev": "-"
             },
             {
               "time": "21:30",
@@ -1660,8 +1601,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "+0.6%",
-              "prev": "+0.7%",
-              "_source": "kissfx"
+              "prev": "+0.7%"
             },
             {
               "time": "23:00",
@@ -1671,8 +1611,7 @@
               "importance": 2,
               "rank": "",
               "forecast": "48.2",
-              "prev": "48.2",
-              "_source": "kissfx"
+              "prev": "48.2"
             }
           ]
         }
