@@ -1,7 +1,4 @@
-import json
-import re
-import urllib.request
-import urllib.error
+import json, re, urllib.request
 from datetime import datetime, timezone, timedelta
 
 JST = timezone(timedelta(hours=9))
@@ -13,186 +10,273 @@ def fetch(url):
     with urllib.request.urlopen(req, timeout=15) as r:
         return r.read().decode('utf-8', errors='ignore')
 
-def get_week_monday():
+def get_monday():
     now = datetime.now(JST)
-    days_ahead = (0 - now.weekday()) % 7
-    if now.weekday() == 6:  # Sunday
-        days_ahead = 1
-    elif now.weekday() == 0:
-        days_ahead = 0
-    else:
-        days_ahead = (0 - now.weekday()) % 7
-    monday = now + timedelta(days=days_ahead)
-    return monday.strftime('%Y-%m-%d')
+    wd = now.weekday()  # 0=月 6=日
+    if wd == 6: delta = 1
+    else: delta = -wd
+    return (now + timedelta(days=delta)).strftime('%Y-%m-%d')
 
-def scrape_minkabu():
-    monday = get_week_monday()
-    url = f'https://fx.minkabu.jp/indicators?date={monday}'
-    html = fetch(url)
+# 国フラグ画像→国名・絵文字マッピング
+FLAG_MAP = {
+    'usa': ('米', '🇺🇸'), 'england': ('英', '🇬🇧'), 'uk': ('英', '🇬🇧'),
+    'china': ('中', '🇨🇳'), 'japan': ('日', '🇯🇵'), 'euro': ('欧', '🇪🇺'),
+    'australia': ('豪', '🇦🇺'), 'canada': ('加', '🇨🇦'),
+    'newzy': ('NZ', '🇳🇿'), 'newzealand': ('NZ', '🇳🇿'),
+    'germany': ('独', '🇩🇪'), 'france': ('仏', '🇫🇷'),
+    'switzerland': ('スイス', '🇨🇭'), 'sweden': ('スウェーデン', '🇸🇪'),
+}
+
+def flag_from_img(src):
+    src = src.lower()
+    for key, val in FLAG_MAP.items():
+        if key in src:
+            return val
+    return ('', '🌐')
+
+# ランク画像→ランク文字マッピング（ファイル名ベース）
+RANK_IMG_MAP = {
+    'rank_s': 'S', 'rank_a': 'A', 'rank_b': 'B', 'rank_c': 'C',
+    'rank_d': 'D', 'rank_e': 'E', 'rank_f': 'F',
+    'maru': '○', 'sankaku': '△', 'batsu': '✕',
+    'rank1': 'S', 'rank2': 'A', 'rank3': 'B', 'rank4': 'C',
+}
+
+def rank_from_img(src):
+    src = src.lower()
+    for key, val in RANK_IMG_MAP.items():
+        if key in src:
+            return val
+    return ''
+
+def scrape_kissfx_day(date_str):
+    """
+    date_str: '2026-05-18' 形式
+    kissfx の日付別記事URLを生成してスクレイピング
+    URL例: https://kissfx.com/article/fxdays20260518.html
+    """
+    d = datetime.strptime(date_str, '%Y-%m-%d')
+    url = f"https://kissfx.com/article/fxdays{d.strftime('%Y%m%d')}.html"
+    try:
+        html = fetch(url)
+    except Exception as e:
+        print(f"  kissfx {date_str} 取得失敗: {e}")
+        return []
+
+    rows = []
+
+    # テーブルの行を抽出（| で区切られたMarkdown表形式）
+    # 実際はHTMLなので<tr>タグで抽出
+    # まずHTMLから<tr>ブロックを取る
+    tr_blocks = re.findall(r'<tr[^>]*>(.*?)</tr>', html, re.DOTALL)
+
+    current_time = ''
+    for tr in tr_blocks:
+        # <td>を取り出す
+        tds = re.findall(r'<td[^>]*>(.*?)</td>', tr, re.DOTALL)
+        if len(tds) < 4:
+            continue
+
+        # 1列目: 時間
+        time_raw = re.sub(r'<[^>]+>', '', tds[0]).strip()
+        time_raw = re.sub(r'\s+', ' ', time_raw).strip()
+        if re.match(r'\d{1,2}:\d{2}', time_raw):
+            current_time = time_raw.split()[0]
+        elif time_raw in ('-', ''):
+            pass  # current_timeを引き継ぐ
+        elif '翌' in time_raw:
+            m = re.search(r'(\d{1,2}:\d{2})', time_raw)
+            current_time = '翌' + (m.group(1) if m else '')
+
+        # 2列目: 国フラグ画像
+        img_src = ''
+        img_m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', tds[1])
+        if img_m:
+            img_src = img_m.group(1)
+        country_name, country_flag = flag_from_img(img_src)
+
+        # 3列目: タイトル（HTMLタグ除去）
+        title_html = tds[2]
+        # 重要度判定（赤太字=最重要、太字=重要、通常=普通）
+        is_red_bold = bool(re.search(r'<(b|strong)[^>]*>.*?<span[^>]*color.*?red|color.*?red.*?<(b|strong)', title_html, re.IGNORECASE)) or \
+                      bool(re.search(r'style=["\'][^"\']*color\s*:\s*(red|#[Ee][Ee]0000|rgb\(2[0-9]{2},\s*0,\s*0)', title_html, re.IGNORECASE))
+        is_bold = bool(re.search(r'<(b|strong)[^>]*>', title_html, re.IGNORECASE))
+        title = re.sub(r'<[^>]+>', '', title_html).strip()
+        title = re.sub(r'\s+', ' ', title).strip()
+        if not title or title in ('-', '↑・'):
+            continue
+
+        # 重要度スコア
+        if is_red_bold:
+            importance = 3
+        elif is_bold:
+            importance = 2
+        else:
+            importance = 1
+
+        # 4列目: 指標ランク（画像）
+        rank_html = tds[3]
+        rank_img = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', rank_html)
+        rank = ''
+        if rank_img:
+            rank = rank_from_img(rank_img.group(1))
+        # テキストでも判定
+        rank_text = re.sub(r'<[^>]+>', '', rank_html).strip()
+        if not rank and rank_text:
+            rank = rank_text[:3]
+
+        # 5列目: 市場予想値
+        forecast = re.sub(r'<[^>]+>', '', tds[4]).strip() if len(tds) > 4 else '-'
+        forecast = re.sub(r'\s+', '', forecast)
+
+        # 6列目: 前回発表値
+        prev = re.sub(r'<[^>]+>', '', tds[5]).strip() if len(tds) > 5 else '-'
+        prev = re.sub(r'\s+', '', prev)
+
+        if not title:
+            continue
+
+        rows.append({
+            'time': current_time,
+            'country': country_name,
+            'flag': country_flag,
+            'name': title,
+            'importance': importance,
+            'rank': rank,
+            'forecast': forecast if forecast else '-',
+            'prev': prev if prev else '-',
+            '_source': 'kissfx'
+        })
+
+    return rows
+
+def scrape_minkabu(date_str):
+    """みんかぶFXから経済指標を取得"""
+    url = f'https://fx.minkabu.jp/indicators?date={date_str}'
+    try:
+        html = fetch(url)
+    except Exception as e:
+        print(f"  みんかぶ取得失敗: {e}")
+        return {}
 
     days = {}
     current_date = None
 
-    date_pattern = re.compile(r'(\d{4}年\d{2}月\d{2}日\([月火水木金土日]\))')
-    row_pattern = re.compile(
-        r'(\d{2}:\d{2})\s*\|[^|]*\|\s*\[([^\]]+)\]\([^)]+\)\s*\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)',
-        re.DOTALL
-    )
-
-    lines = html.split('\n')
-    for line in lines:
-        dm = date_pattern.search(line)
+    # 日付ヘッダー
+    for line in html.split('\n'):
+        dm = re.search(r'(\d{4}年\d{2}月\d{2}日\([月火水木金土日]\))', line)
         if dm:
             current_date = dm.group(1)
             if current_date not in days:
                 days[current_date] = []
 
         if current_date and '|' in line:
-            rm = row_pattern.search(line)
-            if rm:
-                time_val = rm.group(1).strip()
-                name = rm.group(2).strip()
-                stars_raw = rm.group(3).strip()
-                pips_raw = rm.group(4).strip()
-                prev_raw = rm.group(5).strip()
-                fc_raw = rm.group(6).strip()
-                res_raw = rm.group(7).strip()
+            # テーブル行パース
+            parts = [p.strip() for p in line.split('|')]
+            parts = [p for p in parts if p]
+            if len(parts) < 3:
+                continue
 
-                imp = len(re.findall(r'★', stars_raw)) or 1
+            time_m = re.match(r'\d{2}:\d{2}', parts[0])
+            if not time_m:
+                continue
 
-                pips_clean = re.search(r'[+-]?\d+\.?\d*pips', pips_raw)
-                pips_val = pips_clean.group(0).replace('pips','').strip() if pips_clean else '---'
+            time_val = parts[0]
+            # 指標名はリンク形式 [name](url)
+            name_m = re.search(r'\[([^\]]+)\]', parts[2] if len(parts) > 2 else '')
+            if not name_m:
+                continue
+            name = name_m.group(1)
 
-                days[current_date].append({
-                    'time': time_val,
-                    'name': name,
-                    'importance': imp,
-                    'rank': '',
-                    'pips': pips_val,
-                    'prev': prev_raw if prev_raw != '---' else '---',
-                    'forecast': fc_raw if fc_raw != '---' else '---',
-                    'result': res_raw if res_raw != '---' else '---'
-                })
+            # 星の数
+            stars_part = parts[3] if len(parts) > 3 else ''
+            imp = len(re.findall(r'★', stars_part))
+            if imp == 0:
+                imp = 2  # デフォルト
 
-    # Fallback: simpler table extraction
-    if not any(days.values()):
-        table_rows = re.findall(
-            r'\|\s*(\d{2}:\d{2})\s*\|[^|]+\|\s*\[([^\]]+)\]',
-            html
-        )
-        for time_val, name in table_rows:
-            if current_date:
-                days.setdefault(current_date, []).append({
-                    'time': time_val, 'name': name,
-                    'importance': 2, 'rank': '',
-                    'pips': '---', 'prev': '---',
-                    'forecast': '---', 'result': '---'
-                })
+            # pips
+            pips_part = parts[4] if len(parts) > 4 else ''
+            pips_m = re.search(r'([+-]?\d+\.?\d*)pips', pips_part)
+            pips = pips_m.group(0).replace('pips','') if pips_m else ''
+
+            prev = parts[5].strip() if len(parts) > 5 else '-'
+            fc   = parts[6].strip() if len(parts) > 6 else '-'
+            res  = parts[7].strip() if len(parts) > 7 else '-'
+
+            days[current_date].append({
+                'time': time_val,
+                'name': name,
+                'importance': imp,
+                'rank': '',
+                'pips': pips,
+                'prev': prev,
+                'forecast': fc,
+                'result': res,
+                '_source': 'minkabu'
+            })
 
     return days
 
-def scrape_kissfx():
-    html = fetch('https://kissfx.com/article/20260518weekfx.html')
-
-    # Try to find this week's article link
-    week_link = re.search(r'href="(https://kissfx\.com/article/\d{8}weekfx\.html)"', html)
-    if not week_link:
-        # Try top page
-        top = fetch('https://kissfx.com/')
-        week_link = re.search(r'href="(https://kissfx\.com/article/\d{8}weekfx\.html)"', top)
-
-    focus_by_day = {}
-    week_theme = ''
-
-    if week_link:
-        html = fetch(week_link.group(1))
-
-    # Extract week theme
-    theme_m = re.search(r'今週の.*?焦点.*?\n(.+?)(?:\n|$)', html)
-    if theme_m:
-        week_theme = theme_m.group(1)[:60].strip()
-
-    # Extract daily focus items
-    day_sections = re.findall(
-        r'▼\[?(5月\d+日\([月火水木金土日]\))\]?.*?\n((?:(?!▼\[?5月).)*)',
-        html, re.DOTALL
-    )
-    for day_label, content in day_sections:
-        items = []
-        for line in content.split('\n'):
-            line = line.strip()
-            if line.startswith('・') or line.startswith('日)') or line.startswith('英)') or \
-               line.startswith('米)') or line.startswith('豪)') or line.startswith('加)') or \
-               line.startswith('欧)') or line.startswith('NZ)') or line.startswith('独)'):
-                clean = re.sub(r'\*\*|\[|\]|\(https?://[^)]+\)', '', line).strip()
-                if clean and len(clean) > 2:
-                    items.append(clean[:80])
-        if items:
-            focus_by_day[day_label] = items[:6]
-
-    return focus_by_day, week_theme
-
 def build_data():
     now = datetime.now(JST)
+    monday_str = get_monday()
+    monday_dt  = datetime.strptime(monday_str, '%Y-%m-%d')
 
+    print(f"月曜日: {monday_str}")
+
+    # 月〜金の日付リスト
+    weekdays = [(monday_dt + timedelta(days=i)) for i in range(5)]
+
+    # みんかぶ取得
     print("Fetching みんかぶFX...")
-    try:
-        minkabu_days = scrape_minkabu()
-    except Exception as e:
-        print(f"みんかぶ取得エラー: {e}")
-        minkabu_days = {}
+    minkabu_data = scrape_minkabu(monday_str)
 
-    print("Fetching 羊飼いFXブログ...")
-    try:
-        kissfx_focus, week_theme = scrape_kissfx()
-    except Exception as e:
-        print(f"羊飼い取得エラー: {e}")
-        kissfx_focus, week_theme = {}, ''
+    # kissfx 日別取得（月〜金）
+    print("Fetching 羊飼いFXブログ（日別）...")
+    kissfx_by_date = {}
+    for dt in weekdays:
+        date_str = dt.strftime('%Y-%m-%d')
+        ja_date  = f"{dt.month}月{dt.day:02d}日"
+        print(f"  {date_str}...")
+        rows = scrape_kissfx_day(date_str)
+        kissfx_by_date[ja_date] = rows
+        print(f"    → {len(rows)}件取得")
 
-    # Merge
-    all_dates = sorted(set(list(minkabu_days.keys()) + list(kissfx_focus.keys())))
+    # 日付キーを日本語形式に統一してマージ
+    WDAY = ['月','火','水','木','金','土','日']
+    days_out = []
+    for dt in weekdays:
+        ja_key  = f"{dt.month}月{dt.day:02d}日"
+        ja_date = f"{dt.month}月{dt.day}日({WDAY[dt.weekday()]})"
 
-    days = []
-    for date in all_dates:
-        indicators = minkabu_days.get(date, [])
-        focus = kissfx_focus.get(date, [])
+        # みんかぶデータ（キーがYYYY年MM月DD日形式）
+        minkabu_key = dt.strftime('%Y年%m月%d日(') + WDAY[dt.weekday()] + ')'
+        minkabu_rows = minkabu_data.get(minkabu_key, [])
 
-        # Assign ranks from kissfx if available (simplified heuristic)
-        rank_map = {
-            'GDP': 'S', 'FOMC': 'S', 'PMI': 'A', 'CPI': 'A', '消費者物価': 'A',
-            '雇用統計': 'A', '失業率': 'A', 'NVIDIA': 'S', 'RBA': 'B',
-            '住宅': 'B', '生産': 'B', '小売': 'B', '鉱工業': 'B'
-        }
-        for ind in indicators:
-            for keyword, rank in rank_map.items():
-                if keyword in ind['name']:
-                    if not ind['rank']:
-                        ind['rank'] = rank
-                    break
+        # kissfxデータ
+        kissfx_rows = kissfx_by_date.get(ja_key, [])
 
-        days.append({
-            'date': date,
-            'focus': focus,
-            'indicators': indicators
+        days_out.append({
+            'date': ja_date,
+            'minkabu': minkabu_rows,
+            'kissfx': kissfx_rows
         })
 
-    # Week range
-    monday = get_week_monday()
-    monday_dt = datetime.strptime(monday, '%Y-%m-%d')
-    saturday_dt = monday_dt + timedelta(days=5)
-    week_range = f"{monday_dt.month}/{monday_dt.day}({['月','火','水','木','金','土','日'][monday_dt.weekday()]}) — {saturday_dt.month}/{saturday_dt.day}({['月','火','水','木','金','土','日'][saturday_dt.weekday()]})"
+    # week_range
+    sat = monday_dt + timedelta(days=5)
+    week_range = f"{monday_dt.month}/{monday_dt.day}({WDAY[monday_dt.weekday()]}) — {sat.month}/{sat.day}({WDAY[sat.weekday()]})"
 
     data = {
         'updated_at': now.isoformat(),
         'week_range': week_range,
-        'week_theme': week_theme or '今週の相場注目材料',
-        'days': days
+        'week_theme': '今週の相場注目材料',
+        'days': days_out
     }
 
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"✅ data.json 生成完了: {len(days)}日分, 更新時刻: {now.strftime('%Y-%m-%d %H:%M JST')}")
+    print(f"\n✅ data.json 生成完了 ({len(days_out)}日分) / {now.strftime('%Y-%m-%d %H:%M JST')}")
 
 if __name__ == '__main__':
     build_data()
