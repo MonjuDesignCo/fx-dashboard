@@ -1,0 +1,15 @@
+{
+  "name": "FX Weekly Dashboard",
+  "short_name": "FX Dashboard",
+  "description": "みんかぶFX・羊飼いFXブログ 週間経済指標ダッシュボード",
+  "start_url": "/fx-dashboard/",
+  "scope": "/fx-dashboard/",
+  "display": "standalone",
+  "background_color": "#0a0e1a",
+  "theme_color": "#0a0e1a",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
