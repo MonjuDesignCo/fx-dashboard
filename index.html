@@ -14,445 +14,355 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #0a0e1a;
-  --bg2: #111827;
-  --bg3: #1a2236;
-  --bg-focus: #131c2e;
-  --border: rgba(255,255,255,0.07);
-  --border2: rgba(255,255,255,0.12);
-  --text: #e8eaf0;
-  --text2: #8892a4;
-  --text3: #4a5568;
-  --accent: #3b82f6;
-  --accent2: #1d4ed8;
-  --gold: #f59e0b;
-  --green: #10b981;
-  --red: #ef4444;
-  --purple: #8b5cf6;
-  --font: 'Noto Sans JP', sans-serif;
+  --bg:       #0a0e1a;
+  --bg2:      #111827;
+  --bg3:      #1a2236;
+  --bg-kfx:   #0e1a14;
+  --border:   rgba(255,255,255,0.07);
+  --border2:  rgba(255,255,255,0.12);
+  --border-kfx: rgba(16,185,129,0.18);
+  --text:     #e8eaf0;
+  --text2:    #8892a4;
+  --text3:    #4a5568;
+  --accent:   #3b82f6;
+  --accent2:  #1d4ed8;
+  --gold:     #f59e0b;
+  --green:    #10b981;
+  --red:      #ef4444;
+  --purple:   #8b5cf6;
+  --teal:     #14b8a6;
+  --font:     'Noto Sans JP', sans-serif;
 }
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { background: var(--bg); color: var(--text); font-family: var(--font); font-size: 14px; }
-body { min-height: 100vh; padding-bottom: 80px; }
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);color:var(--text);font-family:var(--font);font-size:14px}
+body{min-height:100vh;padding-bottom:80px}
 
-/* Header */
-.header {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(10,14,26,0.92);
-  backdrop-filter: blur(12px);
-  border-bottom: 0.5px solid var(--border2);
-  padding: 12px 16px;
-  display: flex; align-items: center; justify-content: space-between;
+/* ── Header ── */
+.header{
+  position:sticky;top:0;z-index:100;
+  background:rgba(10,14,26,0.93);backdrop-filter:blur(12px);
+  border-bottom:0.5px solid var(--border2);
+  padding:12px 16px;
+  display:flex;align-items:center;justify-content:space-between;
 }
-.header-title { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--text2); text-transform: uppercase; font-family: var(--font); }
-.header-date { font-size: 11px; color: var(--text3); font-family: var(--font); }
-.update-badge {
-  display: flex; align-items: center; gap: 5px;
-  font-size: 10px; color: var(--text3); font-family: var(--font);
-  border: 0.5px solid var(--border); border-radius: 20px; padding: 3px 8px;
-}
-.update-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.h-title{font-size:13px;font-weight:500;letter-spacing:.08em;color:var(--text2);text-transform:uppercase}
+.h-date{font-size:11px;color:var(--text3);margin-top:2px}
+.upd-badge{display:flex;align-items:center;gap:5px;font-size:10px;color:var(--text3);border:0.5px solid var(--border);border-radius:20px;padding:3px 8px}
+.upd-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* Week banner */
-.week-banner {
-  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-  border-bottom: 0.5px solid var(--border);
-  padding: 14px 16px;
-  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+/* ── Week banner ── */
+/* ── Week selector（1段構成） ── */
+.week-sel{
+  display:flex;align-items:center;gap:8px;
+  padding:14px 16px;
+  border-bottom:0.5px solid var(--border);
+  background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
 }
-.week-range { font-size: 18px; font-weight: 500; color: var(--text); font-family: var(--font); }
-.week-theme {
-  font-size: 10px; color: var(--purple);
-  border: 0.5px solid rgba(139,92,246,0.3);
-  background: rgba(139,92,246,0.08);
-  padding: 4px 10px; border-radius: 4px;
-  max-width: 160px; text-align: right; line-height: 1.6;
-  font-family: var(--font);
-}
+.w-arrow{background:transparent;border:0.5px solid var(--border2);color:var(--text2);border-radius:6px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .15s}
+.w-arrow:hover{background:var(--bg3);color:var(--text)}
+.w-arrow:disabled{opacity:.3;cursor:default}
+.w-label{flex:1;text-align:center}
+.w-range-text{font-size:18px;font-weight:500;color:var(--text);display:block}
+.w-now{font-size:10px;background:rgba(59,130,246,.15);color:var(--accent);padding:1px 6px;border-radius:3px;margin-left:6px}
 
-/* Week selector */
-.week-selector {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 16px;
-  border-bottom: 0.5px solid var(--border);
-  background: var(--bg2);
-}
-.week-arrow {
-  background: transparent; border: 0.5px solid var(--border2);
-  color: var(--text2); border-radius: 6px;
-  width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 14px; font-family: var(--font);
-  transition: all 0.15s;
-}
-.week-arrow:hover { background: var(--bg3); color: var(--text); }
-.week-arrow:disabled { opacity: 0.3; cursor: default; }
-.week-label-row { flex: 1; text-align: center; font-size: 12px; color: var(--text2); font-family: var(--font); }
-.week-current-badge {
-  font-size: 10px; background: rgba(59,130,246,0.15);
-  color: var(--accent); padding: 1px 6px; border-radius: 3px;
-  margin-left: 6px; font-family: var(--font);
-}
+/* ── Filters ── */
+.filters{padding:10px 16px;display:flex;gap:8px;overflow-x:auto;border-bottom:0.5px solid var(--border);scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.f-btn{flex-shrink:0;padding:5px 12px;border-radius:20px;font-size:11px;border:0.5px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;font-family:var(--font);transition:all .15s}
+.f-btn.active{background:var(--accent2);border-color:var(--accent);color:#fff}
 
-/* Filters */
-.filters {
-  padding: 10px 16px;
-  display: flex; gap: 8px; overflow-x: auto;
-  border-bottom: 0.5px solid var(--border);
-  scrollbar-width: none;
-}
-.filters::-webkit-scrollbar { display: none; }
-.filter-btn {
-  flex-shrink: 0;
-  padding: 5px 12px; border-radius: 20px; font-size: 11px;
-  border: 0.5px solid var(--border2); background: transparent;
-  color: var(--text2); cursor: pointer; font-family: var(--font);
-  transition: all 0.15s;
-}
-.filter-btn.active { background: var(--accent2); border-color: var(--accent); color: #fff; }
+/* ── Day block ── */
+.day-block{border-bottom:0.5px solid var(--border)}
+.day-hd{padding:10px 16px;display:flex;align-items:center;justify-content:space-between;background:var(--bg2);border-left:3px solid transparent}
+.day-hd.today{border-left-color:var(--accent)}
+.day-name{font-size:12px;font-weight:500;color:var(--text)}
+.day-now{font-size:9px;color:var(--accent);margin-left:6px}
+.day-cnt{font-size:10px;color:var(--text3);background:var(--bg3);padding:2px 7px;border-radius:10px}
 
-/* Day blocks */
-.day-block { border-bottom: 0.5px solid var(--border); }
-.day-header {
-  padding: 10px 16px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: var(--bg2);
-  border-left: 3px solid transparent;
-}
-.day-header.today { border-left-color: var(--accent); }
-.day-name { font-size: 12px; font-weight: 500; color: var(--text); font-family: var(--font); }
-.day-today-badge { font-size: 9px; color: var(--accent); margin-left: 6px; }
-.day-count { font-size: 10px; color: var(--text3); background: var(--bg3); padding: 2px 7px; border-radius: 10px; font-family: var(--font); }
+/* ── Row base（左右padding共通 16px）── */
+.row-base{padding:10px 16px;border-bottom:0.5px solid var(--border);display:grid;gap:8px;align-items:start}
 
-/* Indicator row — みんかぶ */
-.ind-row {
-  padding: 10px 16px;
-  border-bottom: 0.5px solid var(--border);
-  display: grid;
-  grid-template-columns: 44px 24px 1fr;
-  gap: 8px; align-items: start;
-}
-.ind-row:hover { background: rgba(255,255,255,0.02); }
-.ind-row.high { border-left: 2px solid var(--gold); padding-left: 14px; }
-.ind-time { font-size: 11px; color: var(--text3); font-family: var(--font); padding-top: 1px; }
-.ind-flag { font-size: 14px; line-height: 1.6; }
-.ind-body { }
-.ind-name { font-size: 11px; color: var(--text); line-height: 1.5; font-family: var(--font); }
-.ind-meta { display: flex; gap: 6px; align-items: center; margin-top: 3px; flex-wrap: wrap; }
-.ind-vals { display: flex; gap: 10px; margin-top: 4px; }
-.val-item { font-size: 10px; color: var(--text3); font-family: var(--font); }
-.val-item span { color: var(--text2); margin-left: 2px; }
+/* みんかぶ行: 時間44px | 国旗24px | 本文 */
+.row-mb{grid-template-columns:44px 24px 1fr}
+.row-mb:hover{background:rgba(255,255,255,.02)}
+.row-mb.high{border-left:2px solid var(--gold);padding-left:14px}
 
-/* Focus row — 羊飼い（時間順に差し込み） */
-.focus-row {
-  padding: 10px 16px;
-  border-bottom: 0.5px solid rgba(139,92,246,0.15);
-  background: var(--bg-focus);
-  display: grid;
-  grid-template-columns: 44px 24px 1fr;
-  gap: 8px; align-items: start;
+/* 羊飼い行 */
+.row-kfx{
+  grid-template-columns:44px 24px 1fr;
+  background:var(--bg-kfx);
+  border-bottom:0.5px solid var(--border-kfx);
 }
-.focus-time { font-size: 11px; color: var(--text3); font-family: var(--font); padding-top: 1px; }
-.focus-icon { font-size: 13px; line-height: 1.6; }
-.focus-body { }
-.focus-source { font-size: 9px; letter-spacing: 0.1em; color: var(--purple); margin-bottom: 3px; font-family: var(--font); }
-.focus-text { font-size: 11px; color: var(--text2); line-height: 1.6; font-family: var(--font); }
+.row-kfx:hover{background:#0f1f18}
 
-/* Stars / rank / pips */
-.stars { font-size: 9px; letter-spacing: -1px; }
-.st-on { color: var(--gold); }
-.st-off { color: var(--border2); }
-.rank { font-size: 10px; font-weight: 500; font-family: var(--font); }
-.rank-S { color: var(--red); }
-.rank-A { color: var(--gold); }
-.rank-B { color: var(--green); }
-.pips { font-size: 10px; font-family: var(--font); }
-.pips-pos { color: var(--green); }
-.pips-neg { color: var(--red); }
-.pips-na { color: var(--text3); }
+/* 共通セル */
+.c-time{font-size:11px;color:var(--text3);padding-top:1px}
+.c-flag{font-size:14px;line-height:1.6}
+.c-body{}
+.c-name{font-size:11px;color:var(--text);line-height:1.5}
+.c-meta{display:flex;gap:6px;align-items:center;margin-top:3px;flex-wrap:wrap}
+.c-vals{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap}
+.v{font-size:10px;color:var(--text3)}
+.v span{color:var(--text2);margin-left:2px}
 
-/* Bottom nav */
-.bottom-nav {
-  position: fixed; bottom: 0; left: 0; right: 0;
-  background: rgba(10,14,26,0.95);
-  backdrop-filter: blur(12px);
-  border-top: 0.5px solid var(--border2);
-  display: flex;
-  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
-}
-.nav-btn {
-  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
-  padding: 4px; background: transparent; border: none; cursor: pointer;
-  color: var(--text3); font-family: var(--font); font-size: 9px; letter-spacing: 0.05em;
-  transition: color 0.15s;
-}
-.nav-btn.active { color: var(--accent); }
-.nav-icon { font-size: 18px; line-height: 1; }
+/* 羊飼い専用 */
+.kfx-src{font-size:9px;letter-spacing:.1em;color:var(--teal);margin-bottom:3px;display:flex;align-items:center;gap:4px}
+.kfx-src::before{content:'';display:inline-block;width:12px;height:0.5px;background:var(--teal)}
+.kfx-name{font-size:11px;color:#a7f3d0;line-height:1.5}
+.kfx-vals{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap}
+.kfx-v{font-size:10px;color:#4b7a65}
+.kfx-v span{color:#6ee7b7;margin-left:2px}
 
-/* Loading / Error */
-.loading { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 50vh; gap: 12px; color: var(--text3); font-size: 12px; font-family: var(--font); }
-.spinner { width: 24px; height: 24px; border: 1.5px solid var(--border2); border-top-color: var(--accent); border-radius: 50%; animation: spin 0.8s linear infinite; }
-@keyframes spin { to { transform: rotate(360deg); } }
-.error-box { margin: 16px; padding: 16px; border: 0.5px solid rgba(239,68,68,0.3); border-radius: 8px; background: rgba(239,68,68,0.05); text-align: center; font-size: 12px; color: var(--red); font-family: var(--font); }
-.retry-btn { margin-top: 10px; padding: 6px 16px; background: transparent; border: 0.5px solid var(--red); border-radius: 4px; color: var(--red); font-size: 11px; cursor: pointer; font-family: var(--font); }
-.no-data { padding: 16px; text-align: center; font-size: 11px; color: var(--text3); font-family: var(--font); }
+/* rank & stars */
+.stars{font-size:9px;letter-spacing:-1px}
+.son{color:var(--gold)}.sof{color:var(--border2)}
+.rank{font-size:10px;font-weight:500;padding:0 3px;border-radius:3px}
+.rank-S{color:var(--red);background:rgba(239,68,68,.1)}
+.rank-A{color:var(--gold);background:rgba(245,158,11,.1)}
+.rank-B,.rank-○{color:var(--green);background:rgba(16,185,129,.1)}
+.rank-C,.rank-△{color:var(--text2);background:rgba(255,255,255,.05)}
+.rank-D,.rank-✕{color:var(--text3);background:transparent}
+.pips{font-size:10px}
+.pp{color:var(--green)}.pn{color:var(--red)}.pz{color:var(--text3)}
 
-@media (min-width: 600px) {
-  body { max-width: 480px; margin: 0 auto; }
-}
+/* ── Bottom nav ── */
+.bnav{position:fixed;bottom:0;left:0;right:0;background:rgba(10,14,26,.95);backdrop-filter:blur(12px);border-top:0.5px solid var(--border2);display:flex;padding:8px 0 max(8px,env(safe-area-inset-bottom))}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px;background:transparent;border:none;cursor:pointer;color:var(--text3);font-family:var(--font);font-size:9px;letter-spacing:.05em;transition:color .15s}
+.nb.active{color:var(--accent)}
+.nb-icon{font-size:18px;line-height:1}
+
+/* loading / error */
+.loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;gap:12px;color:var(--text3);font-size:12px}
+.spin{width:24px;height:24px;border:1.5px solid var(--border2);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.err{margin:16px;padding:16px;border:0.5px solid rgba(239,68,68,.3);border-radius:8px;background:rgba(239,68,68,.05);text-align:center;font-size:12px;color:var(--red)}
+.retry{margin-top:10px;padding:6px 16px;background:transparent;border:0.5px solid var(--red);border-radius:4px;color:var(--red);font-size:11px;cursor:pointer;font-family:var(--font)}
+.nodata{padding:16px;text-align:center;font-size:11px;color:var(--text3)}
+
+@media(min-width:600px){body{max-width:480px;margin:0 auto}}
 </style>
 </head>
 <body>
 
 <div class="header">
   <div>
-    <div class="header-title">FX Dashboard</div>
-    <div class="header-date" id="headerDate"></div>
+    <div class="h-title">FX Dashboard</div>
+    <div class="h-date" id="hDate"></div>
   </div>
-  <div class="update-badge">
-    <span class="update-dot"></span>
-    <span id="updateTime">読込中...</span>
-  </div>
+  <div class="upd-badge"><span class="upd-dot"></span><span id="updTime">読込中...</span></div>
 </div>
 
-<div class="week-banner">
-  <div class="week-range" id="weekRange">—</div>
-  <div class="week-theme" id="weekTheme">—</div>
-</div>
-
-<div class="week-selector">
-  <button class="week-arrow" id="prevWeek" onclick="changeWeek(-1)">‹</button>
-  <div class="week-label-row" id="weekSelectorLabel">
-    <span id="weekSelectorText">—</span>
-    <span class="week-current-badge" id="currentBadge">今週</span>
+<div class="week-sel">
+  <button class="w-arrow" id="btnPrev" onclick="changeWeek(-1)">‹</button>
+  <div class="w-label">
+    <span class="w-range-text" id="wSelText">—</span>
+    <span class="w-now" id="wNow">今週</span>
   </div>
-  <button class="week-arrow" id="nextWeek" onclick="changeWeek(1)">›</button>
+  <button class="w-arrow" id="btnNext" onclick="changeWeek(1)" disabled>›</button>
 </div>
 
 <div class="filters">
-  <button class="filter-btn active" onclick="setFilter('all',this)">すべて</button>
-  <button class="filter-btn" onclick="setFilter('high',this)">★★★のみ</button>
-  <button class="filter-btn" onclick="setFilter('us',this)">🇺🇸 米国</button>
-  <button class="filter-btn" onclick="setFilter('jp',this)">🇯🇵 日本</button>
-  <button class="filter-btn" onclick="setFilter('gb',this)">🇬🇧 英国</button>
-  <button class="filter-btn" onclick="setFilter('cn',this)">🇨🇳 中国</button>
-  <button class="filter-btn" onclick="setFilter('eu',this)">🇪🇺 欧州</button>
+  <button class="f-btn active" onclick="setFilter('all',this)">すべて</button>
+  <button class="f-btn" onclick="setFilter('high',this)">★★★のみ</button>
+  <button class="f-btn" onclick="setFilter('us',this)">🇺🇸 米国</button>
+  <button class="f-btn" onclick="setFilter('jp',this)">🇯🇵 日本</button>
+  <button class="f-btn" onclick="setFilter('gb',this)">🇬🇧 英国</button>
+  <button class="f-btn" onclick="setFilter('cn',this)">🇨🇳 中国</button>
+  <button class="f-btn" onclick="setFilter('eu',this)">🇪🇺 欧州</button>
 </div>
 
-<div id="main">
-  <div class="loading"><div class="spinner"></div>データを読み込み中...</div>
-</div>
+<div id="main"><div class="loading"><div class="spin"></div>データを読み込み中...</div></div>
 
-<nav class="bottom-nav">
-  <button class="nav-btn active" onclick="showTab('calendar')"><span class="nav-icon">📅</span>指標</button>
-  <button class="nav-btn" onclick="showTab('sources')"><span class="nav-icon">🔗</span>ソース</button>
+<nav class="bnav">
+  <button class="nb active" onclick="showTab('calendar')"><span class="nb-icon">📅</span>指標</button>
+  <button class="nb" onclick="showTab('sources')"><span class="nb-icon">🔗</span>ソース</button>
 </nav>
 
 <script>
-let DATA = null;
-let currentFilter = 'all';
-let currentTab = 'calendar';
-let weekOffset = 0;
+let DATA=null, currentFilter='all', currentTab='calendar', weekOffset=0;
 
-const COUNTRY_FILTER = {
-  us: ['米','アメリカ'], jp: ['日','日本'], gb: ['英','英国'],
-  cn: ['中','中国'], eu: ['欧','ユーロ','独','仏']
-};
+const CTRY={us:['米','アメリカ'],jp:['日','日本'],gb:['英','英国'],cn:['中','中国'],eu:['欧','ユーロ','独','仏']};
 
-async function loadData() {
-  try {
-    const res = await fetch('data.json?t=' + Date.now());
-    if (!res.ok) throw new Error();
-    DATA = await res.json();
+async function loadData(){
+  try{
+    const r=await fetch('data.json?t='+Date.now());
+    if(!r.ok) throw new Error();
+    DATA=await r.json();
     renderAll();
-  } catch(e) {
-    document.getElementById('main').innerHTML =
-      `<div class="error-box">データを読み込めませんでした<br>
+  }catch(e){
+    document.getElementById('main').innerHTML=
+      `<div class="err">データを読み込めませんでした<br>
        <small style="color:var(--text3);margin-top:4px;display:block">自動更新は毎朝6時に実行されます</small>
-       <button class="retry-btn" onclick="loadData()">再試行</button></div>`;
+       <button class="retry" onclick="loadData()">再試行</button></div>`;
   }
 }
 
-function renderAll() {
-  if (!DATA) return;
-  document.getElementById('weekRange').textContent = DATA.week_range || '—';
-  document.getElementById('weekTheme').textContent = DATA.week_theme || '—';
-  document.getElementById('updateTime').textContent =
-    DATA.updated_at ? DATA.updated_at.slice(5,16).replace('T',' ') + ' 更新' : '—';
-  const now = new Date();
-  document.getElementById('headerDate').textContent =
-    now.getFullYear() + '/' + String(now.getMonth()+1).padStart(2,'0') + '/' +
-    String(now.getDate()).padStart(2,'0') + '(' + '日月火水木金土'[now.getDay()] + ')';
-  document.getElementById('weekSelectorText').textContent = DATA.week_range || '—';
-  document.getElementById('currentBadge').style.display = weekOffset === 0 ? '' : 'none';
-  document.getElementById('prevWeek').disabled = false;
-  document.getElementById('nextWeek').disabled = weekOffset >= 0;
-  if (currentTab === 'calendar') renderCalendar();
+function renderAll(){
+  if(!DATA) return;
+  document.getElementById('wSelText').textContent=DATA.week_range||'—';
+  document.getElementById('updTime').textContent=DATA.updated_at?DATA.updated_at.slice(5,16).replace('T',' ')+' 更新':'—';
+  const n=new Date();
+  document.getElementById('hDate').textContent=
+    n.getFullYear()+'/'+String(n.getMonth()+1).padStart(2,'0')+'/'+String(n.getDate()).padStart(2,'0')+'('+'日月火水木金土'[n.getDay()]+')';
+  document.getElementById('wNow').style.display=weekOffset===0?'':'none';
+  document.getElementById('btnNext').disabled=weekOffset>=0;
+  if(currentTab==='calendar') renderCalendar();
   else renderSources();
 }
 
-function changeWeek(dir) {
-  weekOffset += dir;
-  if (weekOffset > 0) weekOffset = 0;
-  loadData();
-}
+function changeWeek(d){weekOffset+=d;if(weekOffset>0)weekOffset=0;loadData();}
 
-function setFilter(f, el) {
-  currentFilter = f;
-  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+function setFilter(f,el){
+  currentFilter=f;
+  document.querySelectorAll('.f-btn').forEach(b=>b.classList.remove('active'));
   el.classList.add('active');
-  if (currentTab === 'calendar') renderCalendar();
+  if(currentTab==='calendar') renderCalendar();
 }
 
-function showTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll('.nav-btn').forEach((b,i) => {
-    b.classList.toggle('active', ['calendar','sources'][i] === tab);
-  });
+function showTab(tab){
+  currentTab=tab;
+  document.querySelectorAll('.nb').forEach((b,i)=>b.classList.toggle('active',['calendar','sources'][i]===tab));
   renderAll();
 }
 
-function matchFilter(name) {
-  if (currentFilter === 'all' || currentFilter === 'high') return true;
-  return (COUNTRY_FILTER[currentFilter] || []).some(k => name.includes(k));
+function matchFilter(name){
+  if(currentFilter==='all'||currentFilter==='high') return true;
+  return (CTRY[currentFilter]||[]).some(k=>name.includes(k));
 }
 
-function stars(n) {
-  let s = '';
-  for (let i = 1; i <= 3; i++) s += `<span class="${i<=n?'st-on':'st-off'}">★</span>`;
+function stars(n){
+  let s='';
+  for(let i=1;i<=3;i++) s+=`<span class="${i<=Math.min(n,3)?'son':'sof'}">★</span>`;
   return `<span class="stars">${s}</span>`;
 }
 
-function pipsHtml(v) {
-  if (!v || v === '---') return '<span class="pips pips-na">—</span>';
-  const n = parseFloat(v);
-  if (isNaN(n)) return `<span class="pips pips-na">${v}</span>`;
-  return `<span class="pips ${n>0?'pips-pos':n<0?'pips-neg':'pips-na'}">${n>0?'+':''}${v}pips</span>`;
+function pipsHtml(v){
+  if(!v||v==='---') return '';
+  const n=parseFloat(v);
+  if(isNaN(n)) return '';
+  return `<span class="pips ${n>0?'pp':n<0?'pn':'pz'}">${n>0?'+':''}${v}pips</span>`;
 }
 
-function rankHtml(r) {
-  if (!r) return '';
-  return `<span class="rank rank-${r}">${r}</span>`;
+function rankHtml(r){
+  if(!r) return '';
+  const cls=r==='S'?'rank-S':r==='A'?'rank-A':r==='B'||r==='○'?'rank-B':r==='C'||r==='△'?'rank-C':'rank-D';
+  return `<span class="rank ${cls}">${r}</span>`;
 }
 
-function flagFor(name) {
-  const map = [
-    [['米','アメリカ'],'🇺🇸'],[['英','英国'],'🇬🇧'],[['中','中国'],'🇨🇳'],
-    [['日','日本'],'🇯🇵'],[['欧','ユーロ'],'🇪🇺'],[['豪'],'🇦🇺'],
-    [['加','カナダ'],'🇨🇦'],[['独'],'🇩🇪'],[['仏'],'🇫🇷'],[['NZ'],'🇳🇿']
-  ];
-  for (const [keys, flag] of map) if (keys.some(k => name.includes(k))) return flag;
+function flagFor(name){
+  const m=[[['米','アメリカ'],'🇺🇸'],[['英','英国'],'🇬🇧'],[['中','中国'],'🇨🇳'],
+    [['日','日本'],'🇯🇵'],[['欧','ユーロ'],'🇪🇺'],[['豪'],'🇦🇺'],[['加','カナダ'],'🇨🇦'],
+    [['独'],'🇩🇪'],[['仏'],'🇫🇷'],[['NZ'],'🇳🇿']];
+  for(const[k,f]of m) if(k.some(x=>name.includes(x))) return f;
   return '🌐';
 }
 
-// 時刻文字列を数値に変換（ソート用）
-function timeToNum(t) {
-  if (!t || t === '---' || t === '引後') return 9999;
-  const m = t.match(/^(\d+):(\d+)/);
-  return m ? parseInt(m[1]) * 100 + parseInt(m[2]) : 9999;
+function timeToNum(t){
+  if(!t||t==='-'||t==='引後') return 9999;
+  const m=t.replace('翌','').match(/^(\d+):(\d+)/);
+  const base=m?parseInt(m[1])*100+parseInt(m[2]):9999;
+  return t.startsWith('翌')?base+3000:base;
 }
 
-function renderCalendar() {
-  if (!DATA || !DATA.days) return;
-  const todayStr = new Date().toLocaleDateString('ja-JP', {month:'long', day:'numeric'})
-    .replace('月','月').replace('日','日');
-  let html = '';
+function renderCalendar(){
+  if(!DATA||!DATA.days) return;
+  const todayNum=new Date().getDate();
+  let html='';
 
-  for (const day of DATA.days) {
-    // みんかぶ指標のフィルタリング
-    let indRows = (day.indicators || []).filter(r => {
-      if (currentFilter === 'high' && r.importance < 3) return false;
-      if (!matchFilter(r.name)) return false;
+  for(const day of DATA.days){
+    // みんかぶフィルタリング
+    let mbRows=(day.minkabu||[]).filter(r=>{
+      if(currentFilter==='high'&&r.importance<3) return false;
+      if(!matchFilter(r.name)) return false;
       return true;
-    });
+    }).map(r=>({...r,_src:'mb'}));
 
-    // 羊飼い注目材料（フィルターがallのときのみ表示）
-    const focusItems = currentFilter === 'all' ? (day.focus || []) : [];
+    // 羊飼い（allのみ、フィルタも国で絞る）
+    let kfxRows=currentFilter==='all'
+      ?(day.kissfx||[]).map(r=>({...r,_src:'kfx'}))
+      :(day.kissfx||[]).filter(r=>matchFilter(r.name)).map(r=>({...r,_src:'kfx'}));
 
-    if (!indRows.length && !focusItems.length) continue;
+    if(!mbRows.length&&!kfxRows.length) continue;
 
-    // 時間順にマージ
-    // 指標にtypeを付与
-    const merged = [
-      ...indRows.map(r => ({ ...r, _type: 'ind' })),
-      // 羊飼いアイテムには疑似時刻を付与（指標の合間に差し込む）
-      ...focusItems.map((f, i) => ({ _type: 'focus', text: f, _sort: 500 + i }))
-    ].sort((a, b) => {
-      const ta = a._type === 'ind' ? timeToNum(a.time) : a._sort;
-      const tb = b._type === 'ind' ? timeToNum(b.time) : b._sort;
-      return ta - tb;
-    });
+    // 時間順マージ
+    const merged=[...mbRows,...kfxRows].sort((a,b)=>timeToNum(a.time)-timeToNum(b.time));
 
-    const isToday = day.date && (day.date.includes(todayStr) ||
-      new Date().toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'})
-        .split('/').every(p => day.date.includes(p)));
+    const dayNum=parseInt((day.date.match(/(\d+)日/)||[])[1]||0);
+    const isToday=dayNum===todayNum;
 
-    html += `<div class="day-block">
-      <div class="day-header ${isToday ? 'today' : ''}">
-        <div class="day-name">${day.date}${isToday ? '<span class="day-today-badge">▶ 本日</span>' : ''}</div>
-        <div class="day-count">${indRows.length}件</div>
+    html+=`<div class="day-block">
+      <div class="day-hd ${isToday?'today':''}">
+        <div class="day-name">${day.date}${isToday?'<span class="day-now">▶ 本日</span>':''}</div>
+        <div class="day-cnt">${mbRows.length}件</div>
       </div>`;
 
-    for (const item of merged) {
-      if (item._type === 'ind') {
-        const isHigh = item.importance >= 3;
-        html += `<div class="ind-row ${isHigh ? 'high' : ''}">
-          <div class="ind-time">${item.time || '—'}</div>
-          <div class="ind-flag">${flagFor(item.name)}</div>
-          <div class="ind-body">
-            <div class="ind-name">${item.name}</div>
-            <div class="ind-meta">
-              ${stars(item.importance || 0)}
-              ${item.rank ? rankHtml(item.rank) : ''}
+    for(const item of merged){
+      if(item._src==='mb'){
+        // ── みんかぶ行 ──
+        html+=`<div class="row-base row-mb ${item.importance>=3?'high':''}">
+          <div class="c-time">${item.time||'—'}</div>
+          <div class="c-flag">${flagFor(item.name)}</div>
+          <div class="c-body">
+            <div class="c-name">${item.name}</div>
+            <div class="c-meta">
+              ${stars(item.importance||0)}
               ${pipsHtml(item.pips)}
             </div>
-            <div class="ind-vals">
-              <span class="val-item">前回<span>${item.prev || '—'}</span></span>
-              <span class="val-item">予想<span>${item.forecast || '—'}</span></span>
-              <span class="val-item">結果<span style="color:${item.result && item.result !== '---' ? 'var(--green)' : 'var(--text3)'}">${item.result || '—'}</span></span>
+            <div class="c-vals">
+              <span class="v">前回<span>${item.prev||'—'}</span></span>
+              <span class="v">予想<span>${item.forecast||'—'}</span></span>
+              <span class="v">結果<span style="color:${item.result&&item.result!=='---'?'var(--green)':'var(--text3)'}">${item.result||'—'}</span></span>
             </div>
           </div>
         </div>`;
       } else {
-        html += `<div class="focus-row">
-          <div class="focus-time"></div>
-          <div class="focus-icon">🎯</div>
-          <div class="focus-body">
-            <div class="focus-source">羊飼いFXブログ 注目材料</div>
-            <div class="focus-text">${item.text}</div>
+        // ── 羊飼い行 ──
+        html+=`<div class="row-base row-kfx">
+          <div class="c-time">${item.time||'—'}</div>
+          <div class="c-flag">${item.flag||flagFor(item.name)}</div>
+          <div class="c-body">
+            <div class="kfx-src">羊飼いFXブログ</div>
+            <div class="kfx-name">${item.name}</div>
+            <div class="c-meta">
+              ${rankHtml(item.rank)}
+            </div>
+            <div class="kfx-vals">
+              <span class="kfx-v">市場<span>${item.forecast||'—'}</span></span>
+              <span class="kfx-v">前回<span>${item.prev||'—'}</span></span>
+            </div>
           </div>
         </div>`;
       }
     }
-    html += `</div>`;
+    html+=`</div>`;
   }
 
-  document.getElementById('main').innerHTML = html ||
-    '<div class="no-data" style="padding:32px">条件に一致する指標がありません</div>';
+  document.getElementById('main').innerHTML=html||'<div class="nodata" style="padding:32px">条件に一致する指標がありません</div>';
 }
 
-function renderSources() {
-  document.getElementById('main').innerHTML = `
+function renderSources(){
+  document.getElementById('main').innerHTML=`
     <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
       <a href="https://fx.minkabu.jp/indicators" target="_blank"
          style="display:block;padding:14px 16px;background:var(--bg2);border:0.5px solid var(--border2);border-radius:8px;text-decoration:none">
-        <div style="font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(59,130,246,0.15);color:#60a5fa;display:inline-block;font-family:var(--font)">みんかぶFX</div>
-        <div style="font-size:13px;color:var(--text);margin-top:6px;font-family:var(--font)">経済指標カレンダー</div>
-        <div style="font-size:10px;color:var(--text3);margin-top:3px;font-family:var(--font)">fx.minkabu.jp/indicators</div>
+        <div style="font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(59,130,246,.15);color:#60a5fa;display:inline-block">みんかぶFX</div>
+        <div style="font-size:13px;color:var(--text);margin-top:6px">経済指標カレンダー</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:3px">fx.minkabu.jp/indicators</div>
       </a>
       <a href="https://kissfx.com/" target="_blank"
          style="display:block;padding:14px 16px;background:var(--bg2);border:0.5px solid var(--border2);border-radius:8px;text-decoration:none">
-        <div style="font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(16,185,129,0.15);color:#34d399;display:inline-block;font-family:var(--font)">羊飼いFXブログ</div>
-        <div style="font-size:13px;color:var(--text);margin-top:6px;font-family:var(--font)">今週の注目材料スケジュール</div>
-        <div style="font-size:10px;color:var(--text3);margin-top:3px;font-family:var(--font)">kissfx.com</div>
+        <div style="font-size:9px;padding:1px 6px;border-radius:3px;background:rgba(20,184,166,.15);color:#2dd4bf;display:inline-block">羊飼いFXブログ</div>
+        <div style="font-size:13px;color:var(--text);margin-top:6px">今日の注目材料と指標ランク</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:3px">kissfx.com</div>
       </a>
       <div style="padding:12px;background:var(--bg2);border:0.5px solid var(--border);border-radius:8px">
-        <div style="font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;font-family:var(--font)">データ情報</div>
-        <div style="font-size:11px;color:var(--text2);line-height:2;font-family:var(--font)">
+        <div style="font-size:10px;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px">データ情報</div>
+        <div style="font-size:11px;color:var(--text2);line-height:2">
           更新タイミング：毎朝 6:00 (JST)<br>
           更新方式：GitHub Actions 自動実行<br>
           ホスティング：GitHub Pages<br>
-          最終更新：${DATA && DATA.updated_at ? DATA.updated_at.slice(0,16).replace('T',' ') : '—'}
+          最終更新：${DATA&&DATA.updated_at?DATA.updated_at.slice(0,16).replace('T',' '):'—'}
         </div>
       </div>
     </div>`;
