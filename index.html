@@ -17,7 +17,7 @@
   --bg:       #0a0e1a;
   --bg2:      #111827;
   --bg3:      #1a2236;
-  --bg-kfx:   #131c2e;
+  --bg-kfx:   #10121E;
   --border:   rgba(255,255,255,0.07);
   --border2:  rgba(255,255,255,0.12);
   --border-kfx: rgba(16,185,129,0.18);
@@ -59,9 +59,11 @@ body{min-height:100vh;padding-bottom:80px}
   border-bottom:0.5px solid var(--border);
   background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 100%);
 }
-.w-arrow{background:transparent;border:0.5px solid var(--border2);color:var(--text2);border-radius:6px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .15s}
+.w-arrow{background:transparent;border:0.5px solid var(--border2);color:var(--text2);border-radius:6px;width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .15s;flex-shrink:0}
 .w-arrow:hover{background:var(--bg3);color:var(--text)}
 .w-arrow:disabled{opacity:.3;cursor:default}
+.w-jump{background:transparent;border:0.5px solid var(--border2);color:var(--text2);border-radius:6px;height:32px;padding:0 8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:11px;font-family:var(--font);transition:all .15s;flex-shrink:0;white-space:nowrap}
+.w-jump:hover{background:rgba(59,130,246,.15);color:var(--accent);border-color:var(--accent)}
 .w-label{flex:1;text-align:center}
 .w-range-text{font-size:18px;font-weight:500;color:var(--text);display:block}
 .w-now{font-size:10px;background:rgba(59,130,246,.15);color:var(--accent);padding:1px 6px;border-radius:3px;margin-left:6px}
@@ -81,24 +83,24 @@ body{min-height:100vh;padding-bottom:80px}
 .day-cnt{font-size:10px;color:var(--text3);background:var(--bg3);padding:2px 7px;border-radius:10px}
 
 /* ── Row base（左右padding共通 16px）── */
-.row-base{padding:10px 16px;border-bottom:0.5px solid var(--border);display:grid;gap:8px;align-items:start}
+.row-base{padding:10px 16px;border-bottom:0.5px solid var(--border);display:grid;gap:0 8px;align-items:start}
 
-/* みんかぶ行: 時間44px | 国旗24px | 本文 */
-.row-mb{grid-template-columns:44px 24px 1fr}
+/* みんかぶ行: 時間44px | 国旗20px | 本文 */
+.row-mb{grid-template-columns:44px 20px 1fr}
 .row-mb:hover{background:rgba(255,255,255,.02)}
 .row-mb.high{border-left:2px solid var(--gold);padding-left:14px}
 
 /* 羊飼い行 */
 .row-kfx{
-  grid-template-columns:44px 24px 1fr;
+  grid-template-columns:44px 20px 1fr;
   background:var(--bg-kfx);
-  border-bottom:0.5px solid var(--border-kfx);
+  border-bottom:0.5px solid rgba(255,255,255,0.05);
 }
-.row-kfx:hover{background:#172035}
+.row-kfx:hover{background:#14162a}
 
 /* 共通セル */
-.c-time{font-size:11px;color:#7a8fa8;padding-top:1px;font-weight:500}
-.c-flag{font-size:14px;line-height:1.6}
+.c-time{font-size:11px;color:#7a8fa8;font-weight:500;text-align:center;padding-top:2px}
+.c-flag{font-size:14px;line-height:1.6;text-align:center}
 .c-body{}
 .c-name{font-size:11px;color:var(--text);line-height:1.5}
 .c-meta{display:flex;gap:6px;align-items:center;margin-top:3px;flex-wrap:wrap}
@@ -106,16 +108,11 @@ body{min-height:100vh;padding-bottom:80px}
 .v{font-size:10px;color:var(--text3)}
 .v span{color:var(--text2);margin-left:2px}
 
-/* 羊飼い専用 */
-.kfx-src{font-size:9px;letter-spacing:.1em;color:var(--teal);margin-bottom:3px;display:flex;align-items:center;gap:4px}
-.kfx-src::before{content:'';display:inline-block;width:12px;height:0.5px;background:var(--teal)}
-.kfx-name{font-size:11px;color:#a7f3d0;line-height:1.5}
+/* 羊飼い専用（文字色はみんかぶと統一） */
 .kfx-vals{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap}
-.kfx-v{font-size:10px;color:#4b7a65}
-.kfx-v span{color:#6ee7b7;margin-left:2px}
 
 /* rank & stars */
-.stars{font-size:9px;letter-spacing:-1px}
+.stars{font-size:11px;letter-spacing:-1px}
 .son{color:var(--gold)}.sof{color:var(--border2)}
 .rank{font-size:10px;font-weight:500;padding:0 3px;border-radius:3px}
 .rank-S{color:var(--red);background:rgba(239,68,68,.1)}
@@ -160,6 +157,7 @@ body{min-height:100vh;padding-bottom:80px}
     <span class="w-now" id="wNow">今週</span>
   </div>
   <button class="w-arrow" id="btnNext" onclick="changeWeek(1)" disabled>›</button>
+  <button class="w-jump" id="btnJump" onclick="jumpToLatest()" title="今週へジャンプ">&gt;&gt;</button>
 </div>
 
 <div class="filters">
@@ -220,6 +218,7 @@ function renderAll(){
   document.getElementById('wNow').style.display=weekIndex===total-1?'':'none';
   document.getElementById('btnPrev').disabled=weekIndex<=0;
   document.getElementById('btnNext').disabled=weekIndex>=total-1;
+  document.getElementById('btnJump').disabled=weekIndex>=total-1;
   if(currentTab==='calendar') renderCalendar();
   else renderSources();
 }
@@ -227,6 +226,12 @@ function renderAll(){
 function changeWeek(d){
   const total=(ALLDATA&&ALLDATA.weeks)?ALLDATA.weeks.length:1;
   weekIndex=Math.max(0,Math.min(total-1,weekIndex+d));
+  renderAll();
+}
+
+function jumpToLatest(){
+  const total=(ALLDATA&&ALLDATA.weeks)?ALLDATA.weeks.length:1;
+  weekIndex=total-1;
   renderAll();
 }
 
@@ -338,14 +343,13 @@ function renderCalendar(){
           <div class="c-time">${item.time||'—'}</div>
           <div class="c-flag">${item.flag||flagFor(item.name)}</div>
           <div class="c-body">
-            <div class="kfx-src">羊飼いFXブログ</div>
-            <div class="kfx-name">${item.name}</div>
+            <div class="c-name">${item.name}</div>
             <div class="c-meta">
               ${rankHtml(item.rank)}
             </div>
             <div class="kfx-vals">
-              <span class="kfx-v">市場<span>${item.forecast||'—'}</span></span>
-              <span class="kfx-v">前回<span>${item.prev||'—'}</span></span>
+              <span class="v">市場<span>${item.forecast||'—'}</span></span>
+              <span class="v">前回<span>${item.prev||'—'}</span></span>
             </div>
           </div>
         </div>`;
