@@ -255,7 +255,7 @@ function matchFilter(name){
 
 function stars(n){
   let s='';
-  for(let i=1;i<=3;i++) s+=`<span class="${i<=Math.min(n,3)?'son':'sof'}">★</span>`;
+  for(let i=1;i<=5;i++) s+=`<span class="${i<=n?'son':'sof'}">★</span>`;
   return `<span class="stars">${s}</span>`;
 }
 
@@ -266,9 +266,11 @@ function pipsHtml(v){
   return `<span class="pips ${n>0?'pp':n<0?'pn':'pz'}">${n>0?'+':''}${v}pips</span>`;
 }
 
-function rankHtml(r){
+function rankHtml(r, forecast){
+  // 要人発言はSランクと同じスタイル
+  if(forecast==='要人発言') return `<span class="rank rank-S">要人発言</span>`;
   if(!r) return '';
-  const cls=r==='S'?'rank-S':r==='A'?'rank-A':r==='B'||r==='○'?'rank-B':r==='C'||r==='△'?'rank-C':'rank-D';
+  const cls=r==='SS'||r==='S'?'rank-S':r==='A'||r==='◎'?'rank-A':r==='B'||r==='○'?'rank-B':r==='C'||r==='△'?'rank-C':'rank-D';
   return `<span class="rank ${cls}">${r}</span>`;
 }
 
@@ -352,7 +354,7 @@ function renderCalendar(){
           <div class="c-body">
             <div class="c-name">${item.name}</div>
             <div class="c-meta">
-              ${rankHtml(item.rank)}
+              ${rankHtml(item.rank, item.forecast)}
             </div>
             <div class="kfx-vals">
               <span class="v">市場<span>${item.forecast||'—'}</span></span>
