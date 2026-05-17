@@ -18,74 +18,6 @@ def get_monday():
 
 WDAY = ['月','火','水','木','金','土','日']
 
-# ── みんかぶFX スクレイパー ──────────────────────────────
-def scrape_minkabu(monday_str):
-    # country=focus_countries で主要国のみ取得（余分な指標を除外）
-    url = f'https://fx.minkabu.jp/indicators?date={monday_str}&country=focus_countries'
-    try:
-        html = fetch(url)
-    except Exception as e:
-        print(f'  みんかぶ取得失敗: {e}')
-        return {}
-
-    days = {}
-    current_date = None
-
-    # Markdown変換後の形式でパース
-    # 日付行: *2026年05月18日(月)*
-    date_pat = re.compile(r'\*(\d{4}年\d{2}月\d{2}日\([月火水木金土日]\))\*')
-    # テーブル行: | 08:01 |  | [指標名](URL) |  | +1.6pips | 0.8% | --- | --- |
-    row_pat = re.compile(
-        r'^\|\s*(\d{1,2}:\d{2}|未定)\s*\|[^|]*\|\s*\[([^\]]+)\]\(([^)]+)\)[^|]*\|[^|]*\|([^|]*)\|([^|]*)\|([^|]*)\|([^|]*)\|',
-        re.MULTILINE
-    )
-
-    for line in html.split('\n'):
-        # 日付ヘッダー検出
-        dm = date_pat.search(line)
-        if dm:
-            current_date = dm.group(1)
-            if current_date not in days:
-                days[current_date] = []
-            continue
-
-        if not current_date:
-            continue
-
-        # テーブル行検出
-        m = row_pat.match(line)
-        if not m:
-            continue
-
-        time_val = m.group(1).strip()
-        name     = m.group(2).strip()
-        pips_raw = m.group(4).strip()
-        prev_raw = m.group(5).strip()
-        fc_raw   = m.group(6).strip()
-        res_raw  = m.group(7).strip()
-
-        # pips数値を抽出（符号付き）
-        pm = re.search(r'([+-]?\d+\.?\d*)pips', pips_raw)
-        pips = pm.group(1) if pm else ''
-
-        def clean_val(v):
-            v = v.strip()
-            return '---' if v in ('---', '', '-') else v
-
-        days[current_date].append({
-            'time':       time_val,
-            'name':       name,
-            'importance': 2,  # みんかぶは星が動的描画のためデフォルト値
-            'rank':       '',
-            'pips':       pips,
-            'prev':       clean_val(prev_raw),
-            'forecast':   clean_val(fc_raw),
-            'result':     clean_val(res_raw),
-        })
-
-    return days
-
-# ── 羊飼いFXブログ 日別スクレイパー ────────────────────────
 FLAG_MAP = {
     'usa':'🇺🇸','england':'🇬🇧','uk':'🇬🇧','china':'🇨🇳','japan':'🇯🇵',
     'euro':'🇪🇺','australia':'🇦🇺','canada':'🇨🇦',
@@ -98,6 +30,86 @@ COUNTRY_MAP = {
     'newzy':'NZ','newzealand':'NZ','germany':'独','france':'仏',
 }
 
+# ── みんかぶFX ──────────────────────────────────────────
+def scrape_minkabu(monday_str):
+    # focus_countries で主要国のみ取得
+    url = f'https://fx.minkabu.jp/indicators?date={monday_str}&country=focus_countries'
+    try:
+        html = fetch(url)
+    except Exception as e:
+        print(f'  みんかぶ取得失敗: {e}')
+        return {}
+
+    days = {}
+    current_date = None
+
+    date_pat = re.compile(r'\*(\d{4}年\d{2}月\d{2}日\([月火水木金土日]\))\*')
+
+    lines = html.split('\n')
+    for line in lines:
+        # 日付ヘッダー
+        dm = date_pat.search(line)
+        if dm:
+            current_date = dm.group(1)
+            if current_date not in days:
+                days[current_date] = []
+            continue
+
+        if not current_date:
+            continue
+
+        # テーブル行: | 時間 | | [指標名](url) | | pips | 前回 | 予想 | 結果 |
+        if '|' not in line:
+            continue
+        parts = [p.strip() for p in line.split('|')]
+        parts = [p for p in parts if p != '']
+        if len(parts) < 6:
+            continue
+
+        # 時間チェック
+        time_m = re.match(r'^(\d{1,2}:\d{2}|未定)$', parts[0])
+        if not time_m:
+            continue
+        time_val = parts[0]
+
+        # 指標名（リンク形式 [name](url) から抽出）
+        name_m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', parts[2] if len(parts) > 2 else '')
+        if not name_m:
+            continue
+        name = name_m.group(1).strip()
+
+        # pips
+        pips_raw = parts[4] if len(parts) > 4 else ''
+        pm = re.search(r'([+-]?\d+\.?\d*)pips', pips_raw)
+        pips = pm.group(1) if pm else ''
+
+        # 前回・予想・結果
+        prev_raw = parts[5].strip() if len(parts) > 5 else '---'
+        fc_raw   = parts[6].strip() if len(parts) > 6 else '---'
+        res_raw  = parts[7].strip() if len(parts) > 7 else '---'
+
+        def cv(v):
+            return '---' if v in ('---', '', '-') else v
+
+        # 重要度: みんかぶは星が動的描画のため、
+        # importance=パラメータ付きURLで★3以上・★4以上のページと照合せず
+        # デフォルト2、後でkissfxランクで補完
+        days[current_date].append({
+            'time':       time_val,
+            'name':       name,
+            'importance': 2,
+            'rank':       '',
+            'pips':       pips,
+            'prev':       cv(prev_raw),
+            'forecast':   cv(fc_raw),
+            'result':     cv(res_raw),
+        })
+
+    total = sum(len(v) for v in days.values())
+    print(f'  みんかぶ取得: {len(days)}日 / {total}件')
+    return days
+
+# ── 羊飼いFXブログ ──────────────────────────────────────
 def flag_from_img(src):
     s = src.lower()
     for k, v in FLAG_MAP.items():
@@ -108,6 +120,10 @@ def flag_from_img(src):
 def clean(text):
     t = re.sub(r'<[^>]+>', '', text)
     return re.sub(r'\s+', ' ', t).strip()
+
+RANK_TO_IMP = {
+    'SS':5,'S':4,'A':3,'◎':3,'B':2,'○':2,'C':2,'△':1,'✕':1,'D':1
+}
 
 def scrape_kissfx_day(date_str):
     d = datetime.strptime(date_str, '%Y-%m-%d')
@@ -132,8 +148,8 @@ def scrape_kissfx_day(date_str):
         if re.match(r'\d{1,2}:\d{2}', time_raw):
             current_time = time_raw.split()[0]
         elif '翌' in time_raw:
-            m = re.search(r'(\d{1,2}:\d{2})', time_raw)
-            current_time = '翌' + (m.group(1) if m else '')
+            m2 = re.search(r'(\d{1,2}:\d{2})', time_raw)
+            current_time = '翌' + (m2.group(1) if m2 else '')
 
         # 国旗
         img_src = ''
@@ -154,17 +170,14 @@ def scrape_kissfx_day(date_str):
         if not title or title in ('-', '↑・', '↑'):
             continue
 
-        # ランク
+        # ランク（テキストから判定）
         rank = ''
-        rank_td_text = clean(tds[3])
+        rank_text = clean(tds[3])
         for candidate in ['SS','S','A','B','C','D','◎','○','△','✕']:
-            if candidate in rank_td_text:
+            if candidate in rank_text:
                 rank = candidate
                 break
 
-        RANK_TO_IMP = {
-            'SS':5,'S':4,'A':3,'◎':3,'B':2,'○':2,'C':2,'△':1,'✕':1,'D':1
-        }
         importance = max(text_imp, RANK_TO_IMP.get(rank, 1))
 
         forecast = clean(tds[4]) if len(tds) > 4 else '-'
@@ -181,9 +194,10 @@ def scrape_kissfx_day(date_str):
             'prev':       prev or '-',
         })
 
+    print(f'  kissfx {date_str}: {len(rows)}件')
     return rows
 
-# ── メイン処理 ───────────────────────────────────────────
+# ── メイン ────────────────────────────────────────────
 def build_data():
     now        = datetime.now(JST)
     monday_str = get_monday()
@@ -192,23 +206,16 @@ def build_data():
 
     print(f'今週月曜: {monday_str}')
 
-    # みんかぶFX（主要国フィルター付き）
-    print('Fetching みんかぶFX (focus_countries)...')
+    print('Fetching みんかぶFX...')
     minkabu_data = scrape_minkabu(monday_str)
-    for k, v in minkabu_data.items():
-        print(f'  {k}: {len(v)}件')
 
-    # 羊飼いFXブログ（日別）
     print('Fetching 羊飼いFXブログ...')
     kissfx_by_date = {}
     for dt in weekdays:
         date_str = dt.strftime('%Y-%m-%d')
         ja_key   = f"{dt.month}月{dt.day:02d}日"
-        rows = scrape_kissfx_day(date_str)
-        kissfx_by_date[ja_key] = rows
-        print(f'  {date_str}: {len(rows)}件')
+        kissfx_by_date[ja_key] = scrape_kissfx_day(date_str)
 
-    # 週データ構築
     days_out = []
     for dt in weekdays:
         ja_key      = f"{dt.month}月{dt.day:02d}日"
@@ -221,14 +228,14 @@ def build_data():
             'kissfx':  kissfx_by_date.get(ja_key, []),
         })
 
-    sat = monday_dt + timedelta(days=5)
+    sat        = monday_dt + timedelta(days=5)
     week_range = (
         f"{monday_dt.month}/{monday_dt.day}({WDAY[monday_dt.weekday()]})"
         f" — {sat.month}/{sat.day}({WDAY[sat.weekday()]})"
     )
     this_week = {'week_range': week_range, 'days': days_out}
 
-    # 既存data.jsonから過去週を保持して今週を追加/更新
+    # 既存data.jsonの過去週を保持して今週を更新
     try:
         with open('data.json', 'r', encoding='utf-8') as f:
             existing = json.load(f)
