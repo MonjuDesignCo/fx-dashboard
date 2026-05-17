@@ -162,7 +162,7 @@ body{min-height:100vh;padding-bottom:80px}
 
 <div class="filters">
   <button class="f-btn active" onclick="setFilter('all',this)">すべて</button>
-  <button class="f-btn" onclick="setFilter('high',this)">★★★のみ</button>
+  <button class="f-btn" onclick="setFilter('high',this)">★★★</button>
   <button class="f-btn" onclick="setFilter('us',this)">🇺🇸 米国</button>
   <button class="f-btn" onclick="setFilter('jp',this)">🇯🇵 日本</button>
   <button class="f-btn" onclick="setFilter('gb',this)">🇬🇧 英国</button>
@@ -300,9 +300,16 @@ function renderCalendar(){
       return true;
     }).map(r=>({...r,_src:'mb'}));
 
-    let kfxRows=currentFilter==='all'
-      ?(day.kissfx||[]).map(r=>({...r,_src:'kfx'}))
-      :(day.kissfx||[]).filter(r=>matchFilter(r.name)).map(r=>({...r,_src:'kfx'}));
+    let kfxRows=(()=>{
+      let rows=day.kissfx||[];
+      if(currentFilter==='high'){
+        // ★★★のみ選択時：羊飼いはランクが◎(S/A相当)のみ表示
+        rows=rows.filter(r=>['SS','S','◎'].includes(r.rank)||r.forecast==='要人発言');
+      } else if(currentFilter!=='all'){
+        rows=rows.filter(r=>matchFilter(r.name));
+      }
+      return rows.map(r=>({...r,_src:'kfx'}));
+    })();
 
     if(!mbRows.length&&!kfxRows.length) continue;
 
