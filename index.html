@@ -17,7 +17,7 @@
   --bg:       #0a0e1a;
   --bg2:      #111827;
   --bg3:      #1a2236;
-  --bg-kfx:   #0e1a14;
+  --bg-kfx:   #131c2e;
   --border:   rgba(255,255,255,0.07);
   --border2:  rgba(255,255,255,0.12);
   --border-kfx: rgba(16,185,129,0.18);
@@ -94,10 +94,10 @@ body{min-height:100vh;padding-bottom:80px}
   background:var(--bg-kfx);
   border-bottom:0.5px solid var(--border-kfx);
 }
-.row-kfx:hover{background:#0f1f18}
+.row-kfx:hover{background:#172035}
 
 /* 共通セル */
-.c-time{font-size:11px;color:var(--text3);padding-top:1px}
+.c-time{font-size:11px;color:#7a8fa8;padding-top:1px;font-weight:500}
 .c-flag{font-size:14px;line-height:1.6}
 .c-body{}
 .c-name{font-size:11px;color:var(--text);line-height:1.5}
@@ -180,7 +180,7 @@ body{min-height:100vh;padding-bottom:80px}
 </nav>
 
 <script>
-let DATA=null, currentFilter='all', currentTab='calendar', weekOffset=0;
+let ALLDATA=null, currentFilter='all', currentTab='calendar', weekIndex=0;
 
 const CTRY={us:['米','アメリカ'],jp:['日','日本'],gb:['英','英国'],cn:['中','中国'],eu:['欧','ユーロ','独','仏']};
 
@@ -188,7 +188,10 @@ async function loadData(){
   try{
     const r=await fetch('data.json?t='+Date.now());
     if(!r.ok) throw new Error();
-    DATA=await r.json();
+    ALLDATA=await r.json();
+    // 最新週（末尾）を初期表示
+    weekIndex=(ALLDATA.weeks||[]).length-1;
+    if(weekIndex<0) weekIndex=0;
     renderAll();
   }catch(e){
     document.getElementById('main').innerHTML=
@@ -198,20 +201,34 @@ async function loadData(){
   }
 }
 
+function currentWeek(){
+  if(!ALLDATA||!ALLDATA.weeks) return null;
+  return ALLDATA.weeks[weekIndex]||null;
+}
+
 function renderAll(){
-  if(!DATA) return;
-  document.getElementById('wSelText').textContent=DATA.week_range||'—';
-  document.getElementById('updTime').textContent=DATA.updated_at?DATA.updated_at.slice(5,16).replace('T',' ')+' 更新':'—';
+  if(!ALLDATA) return;
+  const wk=currentWeek();
+  if(!wk) return;
+  const total=ALLDATA.weeks.length;
+  document.getElementById('wSelText').textContent=wk.week_range||'—';
+  document.getElementById('updTime').textContent=ALLDATA.updated_at?ALLDATA.updated_at.slice(5,16).replace('T',' ')+' 更新':'—';
   const n=new Date();
   document.getElementById('hDate').textContent=
     n.getFullYear()+'/'+String(n.getMonth()+1).padStart(2,'0')+'/'+String(n.getDate()).padStart(2,'0')+'('+'日月火水木金土'[n.getDay()]+')';
-  document.getElementById('wNow').style.display=weekOffset===0?'':'none';
-  document.getElementById('btnNext').disabled=weekOffset>=0;
+  // 今週バッジ：最後のweekのみ表示
+  document.getElementById('wNow').style.display=weekIndex===total-1?'':'none';
+  document.getElementById('btnPrev').disabled=weekIndex<=0;
+  document.getElementById('btnNext').disabled=weekIndex>=total-1;
   if(currentTab==='calendar') renderCalendar();
   else renderSources();
 }
 
-function changeWeek(d){weekOffset+=d;if(weekOffset>0)weekOffset=0;loadData();}
+function changeWeek(d){
+  const total=(ALLDATA&&ALLDATA.weeks)?ALLDATA.weeks.length:1;
+  weekIndex=Math.max(0,Math.min(total-1,weekIndex+d));
+  renderAll();
+}
 
 function setFilter(f,el){
   currentFilter=f;
@@ -266,27 +283,26 @@ function timeToNum(t){
 }
 
 function renderCalendar(){
-  if(!DATA||!DATA.days) return;
+  const wk=currentWeek();
+  if(!wk||!wk.days) return;
   const todayNum=new Date().getDate();
   let html='';
 
-  for(const day of DATA.days){
-    // みんかぶフィルタリング
+  for(const day of wk.days){
     let mbRows=(day.minkabu||[]).filter(r=>{
       if(currentFilter==='high'&&r.importance<3) return false;
       if(!matchFilter(r.name)) return false;
       return true;
     }).map(r=>({...r,_src:'mb'}));
 
-    // 羊飼い（allのみ、フィルタも国で絞る）
     let kfxRows=currentFilter==='all'
       ?(day.kissfx||[]).map(r=>({...r,_src:'kfx'}))
       :(day.kissfx||[]).filter(r=>matchFilter(r.name)).map(r=>({...r,_src:'kfx'}));
 
     if(!mbRows.length&&!kfxRows.length) continue;
 
-    // 時間順マージ
     const merged=[...mbRows,...kfxRows].sort((a,b)=>timeToNum(a.time)-timeToNum(b.time));
+    const totalCount=mbRows.length+kfxRows.length;
 
     const dayNum=parseInt((day.date.match(/(\d+)日/)||[])[1]||0);
     const isToday=dayNum===todayNum;
@@ -294,7 +310,7 @@ function renderCalendar(){
     html+=`<div class="day-block">
       <div class="day-hd ${isToday?'today':''}">
         <div class="day-name">${day.date}${isToday?'<span class="day-now">▶ 本日</span>':''}</div>
-        <div class="day-cnt">${mbRows.length}件</div>
+        <div class="day-cnt">${totalCount}件</div>
       </div>`;
 
     for(const item of merged){
@@ -362,7 +378,7 @@ function renderSources(){
           更新タイミング：毎朝 6:00 (JST)<br>
           更新方式：GitHub Actions 自動実行<br>
           ホスティング：GitHub Pages<br>
-          最終更新：${DATA&&DATA.updated_at?DATA.updated_at.slice(0,16).replace('T',' '):'—'}
+          最終更新：${ALLDATA&&ALLDATA.updated_at?ALLDATA.updated_at.slice(0,16).replace('T',' '):'—'}
         </div>
       </div>
     </div>`;
