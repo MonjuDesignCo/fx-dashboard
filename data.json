@@ -1,98 +1,333 @@
 {
   "updated_at": "2026-05-18T06:00:00+09:00",
-  "week_range": "5/18(月) — 5/23(土)",
-  "week_theme": "NVIDIA決算・FOMC議事録・各国PMI速報値が焦点",
-  "days": [
+  "weeks": [
     {
-      "date": "5月18日(月)",
-      "minkabu": [
-        {"time":"08:01","name":"英国・ライトムーブ住宅価格 05月[前月比]","importance":2,"rank":"","pips":"+1.6","prev":"0.8%","forecast":"---","result":"---"},
-        {"time":"10:30","name":"中国・新築住宅販売価格 04月[前月比]","importance":3,"rank":"","pips":"+6.1","prev":"-0.21%","forecast":"---","result":"---"},
-        {"time":"11:00","name":"中国・小売売上高 04月[前年比]","importance":3,"rank":"","pips":"+3.9","prev":"1.7%","forecast":"2.0%","result":"---"},
-        {"time":"11:00","name":"中国・鉱工業生産指数 04月[前年比]","importance":3,"rank":"","pips":"+3.9","prev":"5.7%","forecast":"6.0%","result":"---"},
-        {"time":"23:00","name":"米国・NAHB住宅市場指数 05月","importance":1,"rank":"","pips":"-1.8","prev":"34","forecast":"34","result":"---"}
-      ],
-      "kissfx": [
-        {"time":"08:01","country":"英","flag":"🇬🇧","name":"英)ライトムーブ住宅価格[前月比/前年比]","importance":1,"rank":"✕","forecast":"-","prev":"+0.8%"},
-        {"time":"11:00","country":"中","flag":"🇨🇳","name":"中)鉱工業生産","importance":2,"rank":"○","forecast":"+6.0%","prev":"+5.7%"},
-        {"time":"11:00","country":"中","flag":"🇨🇳","name":"中)小売売上高","importance":2,"rank":"○","forecast":"+2.0%","prev":"+1.7%"},
-        {"time":"11:00","country":"中","flag":"🇨🇳","name":"中)固定資産投資","importance":2,"rank":"○","forecast":"+1.7%","prev":"+1.7%"},
-        {"time":"16:35","country":"英","flag":"🇬🇧","name":"英)グリーンMPC委員の発言","importance":1,"rank":"△","forecast":"要人発言","prev":"-"},
-        {"time":"17:30","country":"英","flag":"🇬🇧","name":"英)マンMPC委員の発言","importance":1,"rank":"△","forecast":"要人発言","prev":"-"},
-        {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)NAHB住宅市場指数","importance":1,"rank":"C","forecast":"34","prev":"34"},
-        {"time":"29:00","country":"米","flag":"🇺🇸","name":"米)対米証券投資【ネット長期フロー】","importance":1,"rank":"C","forecast":"-","prev":"+586億"},
-        {"time":"翌07:45","country":"NZ","flag":"🇳🇿","name":"NZ)第1四半期生産者物価指数","importance":1,"rank":"○","forecast":"-","prev":"+0.1%"}
+      "week_range": "4/1(水) — 4/5(日)",
+      "days": [
+        {
+          "date": "4月1日(水)",
+          "minkabu": [
+            {"time":"10:45","name":"中国・財新製造業PMI 03月","importance":3,"rank":"","pips":"+4.2","prev":"50.8","forecast":"51.1","result":"51.2"},
+            {"time":"16:55","name":"独・製造業PMI 03月[確報値]","importance":2,"rank":"","pips":"+1.8","prev":"46.5","forecast":"48.3","result":"48.3"},
+            {"time":"18:00","name":"欧・製造業PMI 03月[確報値]","importance":2,"rank":"","pips":"+1.2","prev":"47.6","forecast":"48.7","result":"48.6"},
+            {"time":"22:00","name":"米・ISM製造業景気指数 03月","importance":3,"rank":"","pips":"+3.6","prev":"50.3","forecast":"49.5","result":"49.0"},
+            {"time":"23:00","name":"米・JOLTS求人件数 02月","importance":3,"rank":"","pips":"+2.8","prev":"756万件","forecast":"760万件","result":"756万件"}
+          ],
+          "kissfx": [
+            {"time":"10:45","country":"中","flag":"🇨🇳","name":"中)財新製造業PMI","importance":2,"rank":"○","forecast":"51.1","prev":"50.8"},
+            {"time":"16:55","country":"独","flag":"🇩🇪","name":"独)製造業PMI【確報値】","importance":2,"rank":"○","forecast":"48.3","prev":"46.5"},
+            {"time":"22:00","country":"米","flag":"🇺🇸","name":"米)ISM製造業景気指数","importance":3,"rank":"A","forecast":"49.5","prev":"50.3"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)JOLTS求人件数","importance":2,"rank":"△","forecast":"760万件","prev":"756万件"}
+          ]
+        },
+        {
+          "date": "4月2日(木)",
+          "minkabu": [
+            {"time":"21:15","name":"米・ADP雇用統計 03月","importance":3,"rank":"","pips":"+3.1","prev":"14.0万人","forecast":"12.0万人","result":"15.5万人"},
+            {"time":"21:30","name":"米・新規失業保険申請件数","importance":3,"rank":"","pips":"+2.4","prev":"22.4万件","forecast":"22.5万件","result":"21.9万件"},
+            {"time":"23:00","name":"米・トランプ関税発表","importance":4,"rank":"","pips":"-18.2","prev":"---","forecast":"---","result":"---"}
+          ],
+          "kissfx": [
+            {"time":"21:15","country":"米","flag":"🇺🇸","name":"米)ADP雇用統計","importance":3,"rank":"A","forecast":"12.0万人","prev":"14.0万人"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)新規失業保険申請件数","importance":2,"rank":"△","forecast":"22.5万件","prev":"22.4万件"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)トランプ関税発表（相互関税）","importance":3,"rank":"S","forecast":"-","prev":"-"}
+          ]
+        },
+        {
+          "date": "4月4日(金)",
+          "minkabu": [
+            {"time":"21:30","name":"米・雇用統計 03月[非農業部門雇用者数]","importance":4,"rank":"","pips":"-8.4","prev":"15.1万人","forecast":"13.5万人","result":"22.8万人"},
+            {"time":"21:30","name":"米・雇用統計 03月[失業率]","importance":4,"rank":"","pips":"-8.4","prev":"4.1%","forecast":"4.1%","result":"4.2%"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)雇用統計[非農業部門雇用者数]","importance":3,"rank":"S","forecast":"13.5万人","prev":"15.1万人"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)雇用統計[失業率]","importance":3,"rank":"S","forecast":"4.1%","prev":"4.1%"}
+          ]
+        }
       ]
     },
     {
-      "date": "5月19日(火)",
-      "minkabu": [
-        {"time":"08:50","name":"日本・実質GDP1次速報値 第1四半期[前期比]","importance":4,"rank":"","pips":"-4.2","prev":"0.3%","forecast":"---","result":"---"},
-        {"time":"08:50","name":"日本・実質GDP1次速報値 第1四半期[前期比年率]","importance":4,"rank":"","pips":"-4.2","prev":"1.3%","forecast":"---","result":"---"},
-        {"time":"15:00","name":"英国・ILO失業率 03月","importance":3,"rank":"","pips":"-1.4","prev":"---","forecast":"---","result":"---"},
-        {"time":"15:00","name":"英国・雇用統計 04月[失業保険申請件数]","importance":3,"rank":"","pips":"-1.4","prev":"---","forecast":"---","result":"---"},
-        {"time":"21:30","name":"カナダ・消費者物価指数","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
-      ],
-      "kissfx": [
-        {"time":"07:45","country":"NZ","flag":"🇳🇿","name":"NZ)第1四半期生産者物価指数","importance":1,"rank":"○","forecast":"-","prev":"+0.1%"},
-        {"time":"08:50","country":"日","flag":"🇯🇵","name":"日)第1四半期GDP【速報値】","importance":3,"rank":"S","forecast":"-","prev":"+1.3%"},
-        {"time":"10:30","country":"豪","flag":"🇦🇺","name":"豪)RBA議事録公表(5月5日開催分)","importance":2,"rank":"○","forecast":"-","prev":"-"},
-        {"time":"15:00","country":"英","flag":"🇬🇧","name":"英)雇用統計","importance":3,"rank":"A","forecast":"-","prev":"-"},
-        {"time":"21:00","country":"米","flag":"🇺🇸","name":"米)ウォラーFRB理事の発言(投票権あり)","importance":2,"rank":"△","forecast":"要人発言","prev":"-"},
-        {"time":"21:30","country":"加","flag":"🇨🇦","name":"加)消費者物価指数","importance":3,"rank":"A","forecast":"-","prev":"-"},
-        {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)中古住宅販売保留","importance":1,"rank":"C","forecast":"-","prev":"-"}
+      "week_range": "4/7(月) — 4/11(金)",
+      "days": [
+        {
+          "date": "4月7日(月)",
+          "minkabu": [
+            {"time":"10:30","name":"中国・消費者物価指数（CPI） 03月[前年比]","importance":3,"rank":"","pips":"+5.2","prev":"-0.7%","forecast":"-0.4%","result":"-0.1%"},
+            {"time":"10:30","name":"中国・生産者物価指数（PPI） 03月[前年比]","importance":2,"rank":"","pips":"+3.8","prev":"-2.2%","forecast":"-2.3%","result":"-2.5%"}
+          ],
+          "kissfx": [
+            {"time":"10:30","country":"中","flag":"🇨🇳","name":"中)消費者物価指数(CPI)","importance":2,"rank":"○","forecast":"-0.4%","prev":"-0.7%"},
+            {"time":"10:30","country":"中","flag":"🇨🇳","name":"中)生産者物価指数(PPI)","importance":2,"rank":"○","forecast":"-2.3%","prev":"-2.2%"}
+          ]
+        },
+        {
+          "date": "4月10日(木)",
+          "minkabu": [
+            {"time":"21:30","name":"米・消費者物価指数（CPI） 03月[前年比]","importance":4,"rank":"","pips":"+6.8","prev":"2.8%","forecast":"2.6%","result":"2.4%"},
+            {"time":"21:30","name":"米・消費者物価指数（CPI） 03月[コア・前年比]","importance":4,"rank":"","pips":"+6.8","prev":"3.1%","forecast":"3.0%","result":"2.8%"},
+            {"time":"21:30","name":"米・新規失業保険申請件数","importance":3,"rank":"","pips":"+2.1","prev":"22.4万件","forecast":"22.0万件","result":"22.3万件"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)消費者物価指数(CPI)[前年比]","importance":3,"rank":"S","forecast":"2.6%","prev":"2.8%"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)CPI[コア・前年比]","importance":3,"rank":"S","forecast":"3.0%","prev":"3.1%"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)新規失業保険申請件数","importance":2,"rank":"△","forecast":"22.0万件","prev":"22.4万件"}
+          ]
+        },
+        {
+          "date": "4月11日(金)",
+          "minkabu": [
+            {"time":"21:30","name":"米・生産者物価指数（PPI） 03月[前年比]","importance":3,"rank":"","pips":"+3.4","prev":"3.2%","forecast":"3.3%","result":"2.7%"},
+            {"time":"23:00","name":"米・ミシガン大学消費者信頼感指数 04月[速報値]","importance":3,"rank":"","pips":"+2.2","prev":"57.0","forecast":"54.5","result":"50.8"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)生産者物価指数(PPI)[前年比]","importance":3,"rank":"A","forecast":"3.3%","prev":"3.2%"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)ミシガン大消費者信頼感[速報値]","importance":2,"rank":"○","forecast":"54.5","prev":"57.0"}
+          ]
+        }
       ]
     },
     {
-      "date": "5月20日(水)",
-      "minkabu": [
-        {"time":"15:00","name":"英国・消費者物価指数（CPI）","importance":4,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"15:00","name":"英国・生産者物価指数（PPI）","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"27:00","name":"米・FOMC議事録公表（4月28〜29日開催分）","importance":4,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
-      ],
-      "kissfx": [
-        {"time":"15:00","country":"英","flag":"🇬🇧","name":"英)消費者物価指数(CPI)","importance":3,"rank":"A","forecast":"-","prev":"-"},
-        {"time":"15:00","country":"英","flag":"🇬🇧","name":"英)生産者物価指数(PPI)","importance":2,"rank":"○","forecast":"-","prev":"-"},
-        {"time":"22:15","country":"米","flag":"🇺🇸","name":"米)バーFRB理事の発言(投票権あり)","importance":2,"rank":"△","forecast":"要人発言","prev":"-"},
-        {"time":"26:00","country":"米","flag":"🇺🇸","name":"米)20年債入札","importance":2,"rank":"△","forecast":"-","prev":"-"},
-        {"time":"27:00","country":"米","flag":"🇺🇸","name":"米)FOMC議事録公表(4月28日・29日開催分)","importance":3,"rank":"A","forecast":"-","prev":"-"},
-        {"time":"引後","country":"米","flag":"🇺🇸","name":"米)NVIDIA決算","importance":3,"rank":"S","forecast":"-","prev":"-"}
+      "week_range": "4/14(月) — 4/18(金)",
+      "days": [
+        {
+          "date": "4月15日(火)",
+          "minkabu": [
+            {"time":"21:30","name":"米・小売売上高 03月[前月比]","importance":4,"rank":"","pips":"+5.6","prev":"0.2%","forecast":"1.2%","result":"1.4%"},
+            {"time":"22:15","name":"米・鉱工業生産 03月[前月比]","importance":3,"rank":"","pips":"+2.8","prev":"-0.8%","forecast":"0.2%","result":"-0.3%"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)小売売上高[前月比]","importance":3,"rank":"S","forecast":"1.2%","prev":"0.2%"},
+            {"time":"22:15","country":"米","flag":"🇺🇸","name":"米)鉱工業生産[前月比]","importance":2,"rank":"○","forecast":"0.2%","prev":"-0.8%"}
+          ]
+        },
+        {
+          "date": "4月16日(水)",
+          "minkabu": [
+            {"time":"21:30","name":"米・住宅着工件数 03月","importance":2,"rank":"","pips":"+1.8","prev":"149.4万件","forecast":"142.0万件","result":"132.4万件"},
+            {"time":"22:00","name":"パウエルFRB議長発言","importance":4,"rank":"","pips":"-6.2","prev":"---","forecast":"---","result":"---"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)住宅着工件数","importance":1,"rank":"C","forecast":"142.0万件","prev":"149.4万件"},
+            {"time":"22:00","country":"米","flag":"🇺🇸","name":"米)パウエルFRB議長発言","importance":3,"rank":"S","forecast":"要人発言","prev":"-"}
+          ]
+        }
       ]
     },
     {
-      "date": "5月21日(木)",
-      "minkabu": [
-        {"time":"10:30","name":"豪・雇用統計","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"17:00","name":"欧・製造業PMI速報値","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"17:30","name":"英・製造業PMI速報値","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"21:30","name":"米・新規失業保険申請件数","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"22:45","name":"米・製造業PMI速報値","importance":4,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"22:45","name":"米・非製造業PMI速報値","importance":4,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
-      ],
-      "kissfx": [
-        {"time":"10:30","country":"豪","flag":"🇦🇺","name":"豪)雇用統計","importance":3,"rank":"A","forecast":"-","prev":"-"},
-        {"time":"16:15","country":"仏","flag":"🇫🇷","name":"仏)製造業PMI【速報値】","importance":2,"rank":"○","forecast":"-","prev":"-"},
-        {"time":"16:30","country":"独","flag":"🇩🇪","name":"独)製造業PMI【速報値】","importance":2,"rank":"○","forecast":"-","prev":"-"},
-        {"time":"17:00","country":"欧","flag":"🇪🇺","name":"欧)製造業PMI【速報値】","importance":3,"rank":"A","forecast":"-","prev":"-"},
-        {"time":"17:30","country":"英","flag":"🇬🇧","name":"英)製造業PMI【速報値】","importance":3,"rank":"A","forecast":"-","prev":"-"},
-        {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)新規失業保険申請件数","importance":2,"rank":"△","forecast":"-","prev":"-"},
-        {"time":"22:45","country":"米","flag":"🇺🇸","name":"米)製造業PMI【速報値】","importance":3,"rank":"S","forecast":"-","prev":"-"},
-        {"time":"22:45","country":"米","flag":"🇺🇸","name":"米)非製造業PMI【速報値】","importance":3,"rank":"S","forecast":"-","prev":"-"}
+      "week_range": "4/21(月) — 4/25(金)",
+      "days": [
+        {
+          "date": "4月22日(火)",
+          "minkabu": [
+            {"time":"15:00","name":"英国・消費者物価指数（CPI） 03月[前年比]","importance":4,"rank":"","pips":"+3.8","prev":"2.8%","forecast":"2.7%","result":"2.6%"},
+            {"time":"23:00","name":"米・中古住宅販売件数 03月","importance":2,"rank":"","pips":"+1.4","prev":"442万件","forecast":"425万件","result":"400万件"}
+          ],
+          "kissfx": [
+            {"time":"15:00","country":"英","flag":"🇬🇧","name":"英)消費者物価指数(CPI)[前年比]","importance":3,"rank":"A","forecast":"2.7%","prev":"2.8%"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)中古住宅販売件数","importance":1,"rank":"C","forecast":"425万件","prev":"442万件"}
+          ]
+        },
+        {
+          "date": "4月24日(木)",
+          "minkabu": [
+            {"time":"21:30","name":"米・新規失業保険申請件数","importance":3,"rank":"","pips":"+2.6","prev":"21.5万件","forecast":"22.0万件","result":"22.2万件"},
+            {"time":"23:00","name":"米・新築住宅販売件数 03月","importance":2,"rank":"","pips":"+1.8","prev":"67.6万件","forecast":"68.0万件","result":"72.4万件"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)新規失業保険申請件数","importance":2,"rank":"△","forecast":"22.0万件","prev":"21.5万件"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)新築住宅販売件数","importance":1,"rank":"C","forecast":"68.0万件","prev":"67.6万件"}
+          ]
+        },
+        {
+          "date": "4月25日(金)",
+          "minkabu": [
+            {"time":"21:30","name":"米・PCEデフレータ 03月[前年比]","importance":4,"rank":"","pips":"+4.8","prev":"2.5%","forecast":"2.2%","result":"2.3%"},
+            {"time":"21:30","name":"米・PCEデフレータ 03月[コア・前年比]","importance":4,"rank":"","pips":"+4.8","prev":"2.8%","forecast":"2.6%","result":"2.6%"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)PCEデフレータ[前年比]","importance":3,"rank":"S","forecast":"2.2%","prev":"2.5%"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)PCEデフレータ[コア・前年比]","importance":3,"rank":"S","forecast":"2.6%","prev":"2.8%"}
+          ]
+        }
       ]
     },
     {
-      "date": "5月22日(金)",
-      "minkabu": [
-        {"time":"08:30","name":"日本・全国消費者物価指数（CPI）","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"15:00","name":"英国・小売売上高","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
-        {"time":"23:00","name":"米・ミシガン大学消費者信頼感指数【確報値】","importance":2,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
-      ],
-      "kissfx": [
-        {"time":"08:30","country":"日","flag":"🇯🇵","name":"日)全国消費者物価指数","importance":2,"rank":"○","forecast":"-","prev":"-"},
-        {"time":"15:00","country":"英","flag":"🇬🇧","name":"英)小売売上高","importance":2,"rank":"○","forecast":"-","prev":"-"},
-        {"time":"17:00","country":"独","flag":"🇩🇪","name":"独)IFO景況指数","importance":2,"rank":"○","forecast":"-","prev":"-"},
-        {"time":"21:30","country":"加","flag":"🇨🇦","name":"加)小売売上高","importance":1,"rank":"△","forecast":"-","prev":"-"},
-        {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)ミシガン大学消費者信頼感指数【確報値】","importance":2,"rank":"C","forecast":"-","prev":"-"}
+      "week_range": "4/28(月) — 5/2(金)",
+      "days": [
+        {
+          "date": "4月29日(火)",
+          "minkabu": [
+            {"time":"21:30","name":"米・消費者信頼感指数 04月","importance":3,"rank":"","pips":"+2.6","prev":"92.9","forecast":"88.0","result":"86.0"},
+            {"time":"23:00","name":"FOMC政策金利発表（4月29日）","importance":4,"rank":"","pips":"+3.2","prev":"4.25-4.50%","forecast":"4.25-4.50%","result":"4.25-4.50%"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)消費者信頼感指数","importance":2,"rank":"○","forecast":"88.0","prev":"92.9"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)FOMC政策金利発表","importance":3,"rank":"S","forecast":"4.25-4.50%","prev":"4.25-4.50%"}
+          ]
+        },
+        {
+          "date": "5月1日(木)",
+          "minkabu": [
+            {"time":"21:30","name":"米・新規失業保険申請件数","importance":3,"rank":"","pips":"+2.2","prev":"22.2万件","forecast":"22.4万件","result":"24.1万件"},
+            {"time":"23:00","name":"米・ISM製造業景気指数 04月","importance":3,"rank":"","pips":"+3.4","prev":"49.0","forecast":"48.0","result":"48.7"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)新規失業保険申請件数","importance":2,"rank":"△","forecast":"22.4万件","prev":"22.2万件"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)ISM製造業景気指数","importance":3,"rank":"A","forecast":"48.0","prev":"49.0"}
+          ]
+        },
+        {
+          "date": "5月2日(金)",
+          "minkabu": [
+            {"time":"21:30","name":"米・雇用統計 04月[非農業部門雇用者数]","importance":4,"rank":"","pips":"+8.6","prev":"22.8万人","forecast":"13.0万人","result":"17.7万人"},
+            {"time":"21:30","name":"米・雇用統計 04月[失業率]","importance":4,"rank":"","pips":"+8.6","prev":"4.2%","forecast":"4.2%","result":"4.2%"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)雇用統計[非農業部門雇用者数]","importance":3,"rank":"S","forecast":"13.0万人","prev":"22.8万人"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)雇用統計[失業率]","importance":3,"rank":"S","forecast":"4.2%","prev":"4.2%"}
+          ]
+        }
+      ]
+    },
+    {
+      "week_range": "5/5(月) — 5/9(金)",
+      "days": [
+        {
+          "date": "5月7日(水)",
+          "minkabu": [
+            {"time":"20:00","name":"英国・金融政策発表（BOE）","importance":4,"rank":"","pips":"+4.8","prev":"4.50%","forecast":"4.25%","result":"4.25%"},
+            {"time":"23:00","name":"米・ISM非製造業景気指数 04月","importance":3,"rank":"","pips":"+3.2","prev":"50.8","forecast":"50.5","result":"51.6"}
+          ],
+          "kissfx": [
+            {"time":"20:00","country":"英","flag":"🇬🇧","name":"英)BOE金融政策発表（利下げ0.25%）","importance":3,"rank":"S","forecast":"4.25%","prev":"4.50%"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)ISM非製造業景気指数","importance":3,"rank":"A","forecast":"50.5","prev":"50.8"}
+          ]
+        },
+        {
+          "date": "5月9日(金)",
+          "minkabu": [
+            {"time":"23:00","name":"米・ミシガン大学消費者信頼感指数 05月[速報値]","importance":3,"rank":"","pips":"+2.8","prev":"52.2","forecast":"53.0","result":"50.8"}
+          ],
+          "kissfx": [
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)ミシガン大消費者信頼感[速報値]","importance":2,"rank":"○","forecast":"53.0","prev":"52.2"}
+          ]
+        }
+      ]
+    },
+    {
+      "week_range": "5/12(月) — 5/16(金)",
+      "days": [
+        {
+          "date": "5月13日(火)",
+          "minkabu": [
+            {"time":"21:30","name":"米・消費者物価指数（CPI） 04月[前年比]","importance":4,"rank":"","pips":"+7.2","prev":"2.4%","forecast":"2.4%","result":"2.3%"},
+            {"time":"21:30","name":"米・消費者物価指数（CPI） 04月[コア・前年比]","importance":4,"rank":"","pips":"+7.2","prev":"2.8%","forecast":"2.8%","result":"2.8%"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)消費者物価指数(CPI)[前年比]","importance":3,"rank":"S","forecast":"2.4%","prev":"2.4%"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)CPI[コア・前年比]","importance":3,"rank":"S","forecast":"2.8%","prev":"2.8%"}
+          ]
+        },
+        {
+          "date": "5月15日(木)",
+          "minkabu": [
+            {"time":"21:30","name":"米・小売売上高 04月[前月比]","importance":4,"rank":"","pips":"+5.8","prev":"1.4%","forecast":"0.0%","result":"-0.1%"},
+            {"time":"21:30","name":"米・新規失業保険申請件数","importance":3,"rank":"","pips":"+2.4","prev":"22.8万件","forecast":"22.9万件","result":"22.9万件"},
+            {"time":"22:15","name":"米・鉱工業生産 04月[前月比]","importance":3,"rank":"","pips":"+2.2","prev":"-0.3%","forecast":"0.0%","result":"-0.4%"}
+          ],
+          "kissfx": [
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)小売売上高[前月比]","importance":3,"rank":"S","forecast":"0.0%","prev":"1.4%"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)新規失業保険申請件数","importance":2,"rank":"△","forecast":"22.9万件","prev":"22.8万件"},
+            {"time":"22:15","country":"米","flag":"🇺🇸","name":"米)鉱工業生産[前月比]","importance":2,"rank":"○","forecast":"0.0%","prev":"-0.3%"}
+          ]
+        }
+      ]
+    },
+    {
+      "week_range": "5/18(月) — 5/23(土)",
+      "days": [
+        {
+          "date": "5月18日(月)",
+          "minkabu": [
+            {"time":"08:01","name":"英国・ライトムーブ住宅価格 05月[前月比]","importance":2,"rank":"","pips":"+1.6","prev":"0.8%","forecast":"---","result":"---"},
+            {"time":"10:30","name":"中国・新築住宅販売価格 04月[前月比]","importance":3,"rank":"","pips":"+6.1","prev":"-0.21%","forecast":"---","result":"---"},
+            {"time":"11:00","name":"中国・小売売上高 04月[前年比]","importance":3,"rank":"","pips":"+3.9","prev":"1.7%","forecast":"2.0%","result":"---"},
+            {"time":"11:00","name":"中国・鉱工業生産指数 04月[前年比]","importance":3,"rank":"","pips":"+3.9","prev":"5.7%","forecast":"6.0%","result":"---"},
+            {"time":"23:00","name":"米国・NAHB住宅市場指数 05月","importance":1,"rank":"","pips":"-1.8","prev":"34","forecast":"34","result":"---"}
+          ],
+          "kissfx": [
+            {"time":"08:01","country":"英","flag":"🇬🇧","name":"英)ライトムーブ住宅価格[前月比/前年比]","importance":1,"rank":"✕","forecast":"-","prev":"+0.8%"},
+            {"time":"11:00","country":"中","flag":"🇨🇳","name":"中)鉱工業生産","importance":2,"rank":"○","forecast":"+6.0%","prev":"+5.7%"},
+            {"time":"11:00","country":"中","flag":"🇨🇳","name":"中)小売売上高","importance":2,"rank":"○","forecast":"+2.0%","prev":"+1.7%"},
+            {"time":"11:00","country":"中","flag":"🇨🇳","name":"中)固定資産投資","importance":2,"rank":"○","forecast":"+1.7%","prev":"+1.7%"},
+            {"time":"16:35","country":"英","flag":"🇬🇧","name":"英)グリーンMPC委員の発言","importance":1,"rank":"△","forecast":"要人発言","prev":"-"},
+            {"time":"17:30","country":"英","flag":"🇬🇧","name":"英)マンMPC委員の発言","importance":1,"rank":"△","forecast":"要人発言","prev":"-"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)NAHB住宅市場指数","importance":1,"rank":"C","forecast":"34","prev":"34"}
+          ]
+        },
+        {
+          "date": "5月19日(火)",
+          "minkabu": [
+            {"time":"08:50","name":"日本・実質GDP1次速報値 第1四半期[前期比]","importance":4,"rank":"","pips":"-4.2","prev":"0.3%","forecast":"---","result":"---"},
+            {"time":"08:50","name":"日本・実質GDP1次速報値 第1四半期[前期比年率]","importance":4,"rank":"","pips":"-4.2","prev":"1.3%","forecast":"---","result":"---"},
+            {"time":"15:00","name":"英国・ILO失業率 03月","importance":3,"rank":"","pips":"-1.4","prev":"---","forecast":"---","result":"---"},
+            {"time":"21:30","name":"カナダ・消費者物価指数","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
+          ],
+          "kissfx": [
+            {"time":"08:50","country":"日","flag":"🇯🇵","name":"日)第1四半期GDP【速報値】","importance":3,"rank":"S","forecast":"-","prev":"+1.3%"},
+            {"time":"10:30","country":"豪","flag":"🇦🇺","name":"豪)RBA議事録公表(5月5日開催分)","importance":2,"rank":"○","forecast":"-","prev":"-"},
+            {"time":"15:00","country":"英","flag":"🇬🇧","name":"英)雇用統計","importance":3,"rank":"A","forecast":"-","prev":"-"},
+            {"time":"21:00","country":"米","flag":"🇺🇸","name":"米)ウォラーFRB理事の発言","importance":2,"rank":"△","forecast":"要人発言","prev":"-"},
+            {"time":"21:30","country":"加","flag":"🇨🇦","name":"加)消費者物価指数","importance":3,"rank":"A","forecast":"-","prev":"-"}
+          ]
+        },
+        {
+          "date": "5月20日(水)",
+          "minkabu": [
+            {"time":"15:00","name":"英国・消費者物価指数（CPI）","importance":4,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"15:00","name":"英国・生産者物価指数（PPI）","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"27:00","name":"米・FOMC議事録公表（4月28〜29日開催分）","importance":4,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
+          ],
+          "kissfx": [
+            {"time":"15:00","country":"英","flag":"🇬🇧","name":"英)消費者物価指数(CPI)","importance":3,"rank":"A","forecast":"-","prev":"-"},
+            {"time":"22:15","country":"米","flag":"🇺🇸","name":"米)バーFRB理事の発言","importance":2,"rank":"△","forecast":"要人発言","prev":"-"},
+            {"time":"27:00","country":"米","flag":"🇺🇸","name":"米)FOMC議事録公表(4月28〜29日)","importance":3,"rank":"A","forecast":"-","prev":"-"},
+            {"time":"引後","country":"米","flag":"🇺🇸","name":"米)NVIDIA決算","importance":3,"rank":"S","forecast":"-","prev":"-"}
+          ]
+        },
+        {
+          "date": "5月21日(木)",
+          "minkabu": [
+            {"time":"10:30","name":"豪・雇用統計","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"17:00","name":"欧・製造業PMI速報値","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"17:30","name":"英・製造業PMI速報値","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"21:30","name":"米・新規失業保険申請件数","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"22:45","name":"米・製造業PMI速報値","importance":4,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"22:45","name":"米・非製造業PMI速報値","importance":4,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
+          ],
+          "kissfx": [
+            {"time":"10:30","country":"豪","flag":"🇦🇺","name":"豪)雇用統計","importance":3,"rank":"A","forecast":"-","prev":"-"},
+            {"time":"17:00","country":"欧","flag":"🇪🇺","name":"欧)製造業PMI【速報値】","importance":3,"rank":"A","forecast":"-","prev":"-"},
+            {"time":"17:30","country":"英","flag":"🇬🇧","name":"英)製造業PMI【速報値】","importance":3,"rank":"A","forecast":"-","prev":"-"},
+            {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)新規失業保険申請件数","importance":2,"rank":"△","forecast":"-","prev":"-"},
+            {"time":"22:45","country":"米","flag":"🇺🇸","name":"米)製造業PMI【速報値】","importance":3,"rank":"S","forecast":"-","prev":"-"},
+            {"time":"22:45","country":"米","flag":"🇺🇸","name":"米)非製造業PMI【速報値】","importance":3,"rank":"S","forecast":"-","prev":"-"}
+          ]
+        },
+        {
+          "date": "5月22日(金)",
+          "minkabu": [
+            {"time":"08:30","name":"日本・全国消費者物価指数（CPI）","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"15:00","name":"英国・小売売上高","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"},
+            {"time":"23:00","name":"米・ミシガン大学消費者信頼感指数【確報値】","importance":2,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
+          ],
+          "kissfx": [
+            {"time":"08:30","country":"日","flag":"🇯🇵","name":"日)全国消費者物価指数","importance":2,"rank":"○","forecast":"-","prev":"-"},
+            {"time":"15:00","country":"英","flag":"🇬🇧","name":"英)小売売上高","importance":2,"rank":"○","forecast":"-","prev":"-"},
+            {"time":"17:00","country":"独","flag":"🇩🇪","name":"独)IFO景況指数","importance":2,"rank":"○","forecast":"-","prev":"-"},
+            {"time":"23:00","country":"米","flag":"🇺🇸","name":"米)ミシガン大消費者信頼感【確報値】","importance":2,"rank":"C","forecast":"-","prev":"-"}
+          ]
+        }
       ]
     }
   ]
