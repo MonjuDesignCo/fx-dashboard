@@ -124,10 +124,10 @@ body{min-height:100vh;padding-bottom:80px}
 .pp{color:var(--green)}.pn{color:var(--red)}.pz{color:var(--text3)}
 
 /* ── Bottom nav ── */
-.bnav{position:fixed;bottom:0;left:0;right:0;background:rgba(10,14,26,.95);backdrop-filter:blur(12px);border-top:0.5px solid var(--border2);display:flex;padding:8px 0 max(8px,env(safe-area-inset-bottom))}
-.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px;background:transparent;border:none;cursor:pointer;color:var(--text3);font-family:var(--font);font-size:9px;letter-spacing:.05em;transition:color .15s}
+.bnav{position:fixed;bottom:0;left:0;right:0;background:rgba(10,14,26,.95);backdrop-filter:blur(12px);border-top:0.5px solid var(--border2);display:flex;padding:6px 0 max(6px,env(safe-area-inset-bottom))}
+.nb{flex:1;display:flex;align-items:center;justify-content:center;padding:4px;background:transparent;border:none;cursor:pointer;color:var(--text3);font-family:var(--font);transition:color .15s}
 .nb.active{color:var(--accent)}
-.nb-icon{font-size:18px;line-height:1}
+.nb-icon{font-size:20px;line-height:1}
 
 /* loading / error */
 .loading{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:50vh;gap:12px;color:var(--text3);font-size:12px}
@@ -173,8 +173,8 @@ body{min-height:100vh;padding-bottom:80px}
 <div id="main"><div class="loading"><div class="spin"></div>データを読み込み中...</div></div>
 
 <nav class="bnav">
-  <button class="nb active" onclick="showTab('calendar')"><span class="nb-icon">📅</span>指標</button>
-  <button class="nb" onclick="showTab('sources')"><span class="nb-icon">🔗</span>ソース</button>
+  <button class="nb active" onclick="showTab('calendar')"><span class="nb-icon">📅</span></button>
+  <button class="nb" onclick="showTab('sources')"><span class="nb-icon">🔗</span></button>
 </nav>
 
 <script>
