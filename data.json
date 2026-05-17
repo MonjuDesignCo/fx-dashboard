@@ -233,7 +233,7 @@
           "minkabu": [
             {"time":"21:30","name":"米・小売売上高 04月[前月比]","importance":4,"rank":"","pips":"+5.8","prev":"1.4%","forecast":"0.0%","result":"-0.1%"},
             {"time":"21:30","name":"米・新規失業保険申請件数","importance":3,"rank":"","pips":"+2.4","prev":"22.8万件","forecast":"22.9万件","result":"22.9万件"},
-            {"time":"22:15","name":"米・鉱工業生産 04月[前月比]","importance":3,"rank":"","pips":"+2.2","prev":"-0.3%","forecast":"0.0%","result":"-0.4%"}
+            {"time":"22:15","name":"米・鉱工業生産 04月[前月比]","importance":4,"rank":"","pips":"-4.7","prev":"-0.5%","forecast":"0.3%","result":"0.7%"}
           ],
           "kissfx": [
             {"time":"21:30","country":"米","flag":"🇺🇸","name":"米)小売売上高[前月比]","importance":3,"rank":"S","forecast":"0.0%","prev":"1.4%"},
@@ -270,7 +270,7 @@
           "minkabu": [
             {"time":"08:50","name":"日本・実質GDP1次速報値 第1四半期[前期比]","importance":4,"rank":"","pips":"-4.2","prev":"0.3%","forecast":"---","result":"---"},
             {"time":"08:50","name":"日本・実質GDP1次速報値 第1四半期[前期比年率]","importance":4,"rank":"","pips":"-4.2","prev":"1.3%","forecast":"---","result":"---"},
-            {"time":"15:00","name":"英国・ILO失業率 03月","importance":3,"rank":"","pips":"-1.4","prev":"---","forecast":"---","result":"---"},
+            {"time":"15:00","name":"英国・ILO失業率 03月","importance":4,"rank":"","pips":"-1.4","prev":"4.9%","forecast":"---","result":"---"},
             {"time":"21:30","name":"カナダ・消費者物価指数","importance":3,"rank":"","pips":"---","prev":"---","forecast":"---","result":"---"}
           ],
           "kissfx": [
