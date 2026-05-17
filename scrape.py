@@ -222,12 +222,12 @@ def build_data():
     monday_str = get_monday()
     monday_dt  = datetime.strptime(monday_str, '%Y-%m-%d')
 
-    print(f"月曜日: {monday_str}")
+    print(f"今週月曜日: {monday_str}")
 
-    # 月〜金の日付リスト
     weekdays = [(monday_dt + timedelta(days=i)) for i in range(5)]
+    WDAY = ['月','火','水','木','金','土','日']
 
-    # みんかぶ取得
+    # みんかぶ今週分取得
     print("Fetching みんかぶFX...")
     minkabu_data = scrape_minkabu(monday_str)
 
@@ -236,47 +236,54 @@ def build_data():
     kissfx_by_date = {}
     for dt in weekdays:
         date_str = dt.strftime('%Y-%m-%d')
-        ja_date  = f"{dt.month}月{dt.day:02d}日"
+        ja_key   = f"{dt.month}月{dt.day:02d}日"
         print(f"  {date_str}...")
         rows = scrape_kissfx_day(date_str)
-        kissfx_by_date[ja_date] = rows
+        kissfx_by_date[ja_key] = rows
         print(f"    → {len(rows)}件取得")
 
-    # 日付キーを日本語形式に統一してマージ
-    WDAY = ['月','火','水','木','金','土','日']
+    # 今週のdays構築
     days_out = []
     for dt in weekdays:
-        ja_key  = f"{dt.month}月{dt.day:02d}日"
-        ja_date = f"{dt.month}月{dt.day}日({WDAY[dt.weekday()]})"
-
-        # みんかぶデータ（キーがYYYY年MM月DD日形式）
+        ja_key      = f"{dt.month}月{dt.day:02d}日"
+        ja_date     = f"{dt.month}月{dt.day}日({WDAY[dt.weekday()]})"
         minkabu_key = dt.strftime('%Y年%m月%d日(') + WDAY[dt.weekday()] + ')'
-        minkabu_rows = minkabu_data.get(minkabu_key, [])
-
-        # kissfxデータ
-        kissfx_rows = kissfx_by_date.get(ja_key, [])
-
         days_out.append({
-            'date': ja_date,
-            'minkabu': minkabu_rows,
-            'kissfx': kissfx_rows
+            'date':    ja_date,
+            'minkabu': minkabu_data.get(minkabu_key, []),
+            'kissfx':  kissfx_by_date.get(ja_key, [])
         })
 
-    # week_range
     sat = monday_dt + timedelta(days=5)
     week_range = f"{monday_dt.month}/{monday_dt.day}({WDAY[monday_dt.weekday()]}) — {sat.month}/{sat.day}({WDAY[sat.weekday()]})"
+    this_week = {'week_range': week_range, 'days': days_out}
+
+    # 既存data.jsonから過去週を読み込んで末尾に今週を追加・更新
+    try:
+        with open('data.json', 'r', encoding='utf-8') as f:
+            existing = json.load(f)
+        weeks = existing.get('weeks', [])
+        # 同じweek_rangeがあれば上書き、なければ追加
+        found = False
+        for i, w in enumerate(weeks):
+            if w.get('week_range') == week_range:
+                weeks[i] = this_week
+                found = True
+                break
+        if not found:
+            weeks.append(this_week)
+    except Exception:
+        weeks = [this_week]
 
     data = {
         'updated_at': now.isoformat(),
-        'week_range': week_range,
-        'week_theme': '今週の相場注目材料',
-        'days': days_out
+        'weeks': weeks
     }
 
     with open('data.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
 
-    print(f"\n✅ data.json 生成完了 ({len(days_out)}日分) / {now.strftime('%Y-%m-%d %H:%M JST')}")
+    print(f"\n✅ data.json 生成完了 ({len(weeks)}週分) / {now.strftime('%Y-%m-%d %H:%M JST')}")
 
 if __name__ == '__main__':
     build_data()
