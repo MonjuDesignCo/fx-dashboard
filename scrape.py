@@ -31,23 +31,15 @@ COUNTRY_MAP = {
 }
 
 # ── みんかぶFX ──────────────────────────────────────────
-def scrape_minkabu(monday_str):
-    # focus_countries で主要国のみ取得
-    url = f'https://fx.minkabu.jp/indicators?date={monday_str}&country=focus_countries'
-    try:
-        html = fetch(url)
-    except Exception as e:
-        print(f'  みんかぶ取得失敗: {e}')
-        return {}
-
+def parse_minkabu_html(html):
+    """みんかぶFXのMarkdown変換済みHTMLから指標データを抽出"""
     days = {}
     current_date = None
 
+    # 日付ヘッダー: *2026年05月18日(月)*
     date_pat = re.compile(r'\*(\d{4}年\d{2}月\d{2}日\([月火水木金土日]\))\*')
 
-    lines = html.split('\n')
-    for line in lines:
-        # 日付ヘッダー
+    for line in html.split('\n'):
         dm = date_pat.search(line)
         if dm:
             current_date = dm.group(1)
@@ -55,56 +47,69 @@ def scrape_minkabu(monday_str):
                 days[current_date] = []
             continue
 
-        if not current_date:
+        if not current_date or '|' not in line:
             continue
 
-        # テーブル行: | 時間 | | [指標名](url) | | pips | 前回 | 予想 | 結果 |
-        if '|' not in line:
-            continue
+        # テーブル行をパイプで分割
         parts = [p.strip() for p in line.split('|')]
-        parts = [p for p in parts if p != '']
+        # 空要素を除去
+        parts = [p for p in parts if p]
+
         if len(parts) < 6:
             continue
 
+        # parts[0]=時間, parts[1]=空(国旗列), parts[2]=[名前](URL), parts[3]=空(重要度), parts[4]=pips, parts[5]=前回, parts[6]=予想, parts[7]=結果
         # 時間チェック
-        time_m = re.match(r'^(\d{1,2}:\d{2}|未定)$', parts[0])
-        if not time_m:
+        if not re.match(r'^\d{1,2}:\d{2}$|^未定$', parts[0]):
             continue
+
         time_val = parts[0]
 
-        # 指標名（リンク形式 [name](url) から抽出）
-        name_m = re.search(r'\[([^\]]+)\]\(([^)]+)\)', parts[2] if len(parts) > 2 else '')
+        # 指標名: [名前](URL) 形式
+        name_m = re.search(r'\[([^\]]+)\]', parts[2])
         if not name_m:
             continue
         name = name_m.group(1).strip()
 
-        # pips
-        pips_raw = parts[4] if len(parts) > 4 else ''
-        pm = re.search(r'([+-]?\d+\.?\d*)pips', pips_raw)
-        pips = pm.group(1) if pm else ''
-
-        # 前回・予想・結果
-        prev_raw = parts[5].strip() if len(parts) > 5 else '---'
-        fc_raw   = parts[6].strip() if len(parts) > 6 else '---'
-        res_raw  = parts[7].strip() if len(parts) > 7 else '---'
+        # pips: parts[4]
+        pips = ''
+        if len(parts) > 4:
+            pm = re.search(r'([+-]?\d+\.?\d*)pips', parts[4])
+            pips = pm.group(1) if pm else ''
 
         def cv(v):
-            return '---' if v in ('---', '', '-') else v
+            return '---' if v.strip() in ('---', '', '-') else v.strip()
 
-        # 重要度: みんかぶは星が動的描画のため、
-        # importance=パラメータ付きURLで★3以上・★4以上のページと照合せず
-        # デフォルト2、後でkissfxランクで補完
+        prev_val = cv(parts[5]) if len(parts) > 5 else '---'
+        fc_val   = cv(parts[6]) if len(parts) > 6 else '---'
+        res_val  = cv(parts[7]) if len(parts) > 7 else '---'
+
         days[current_date].append({
             'time':       time_val,
             'name':       name,
             'importance': 2,
             'rank':       '',
             'pips':       pips,
-            'prev':       cv(prev_raw),
-            'forecast':   cv(fc_raw),
-            'result':     cv(res_raw),
+            'prev':       prev_val,
+            'forecast':   fc_val,
+            'result':     res_val,
         })
 
+    return days
+
+def scrape_minkabu(monday_str):
+    # date と country を別々に送らず、正しいURL形式で送る
+    # みんかぶはdate+countryの組み合わせが正しく動作しないため
+    # dateのみ指定して全国データを取得し、後で主要国フィルタを適用する
+    url = f'https://fx.minkabu.jp/indicators?date={monday_str}'
+    try:
+        html = fetch(url)
+        print(f'  みんかぶURL: {url}')
+    except Exception as e:
+        print(f'  みんかぶ取得失敗: {e}')
+        return {}
+
+    days = parse_minkabu_html(html)
     total = sum(len(v) for v in days.values())
     print(f'  みんかぶ取得: {len(days)}日 / {total}件')
     return days
@@ -143,7 +148,6 @@ def scrape_kissfx_day(date_str):
         if len(tds) < 4:
             continue
 
-        # 時間
         time_raw = clean(tds[0])
         if re.match(r'\d{1,2}:\d{2}', time_raw):
             current_time = time_raw.split()[0]
@@ -151,14 +155,12 @@ def scrape_kissfx_day(date_str):
             m2 = re.search(r'(\d{1,2}:\d{2})', time_raw)
             current_time = '翌' + (m2.group(1) if m2 else '')
 
-        # 国旗
         img_src = ''
         img_m = re.search(r'<img[^>]+src=["\']([^"\']+)["\']', tds[1])
         if img_m:
             img_src = img_m.group(1)
         country, flag = flag_from_img(img_src)
 
-        # タイトルと重要度
         title_html = tds[2]
         if re.search(r'color\s*:\s*(red|#[Ee][Ee]0{4})|<font[^>]+color=["\']?red', title_html, re.I):
             text_imp = 3
@@ -170,7 +172,6 @@ def scrape_kissfx_day(date_str):
         if not title or title in ('-', '↑・', '↑'):
             continue
 
-        # ランク（テキストから判定）
         rank = ''
         rank_text = clean(tds[3])
         for candidate in ['SS','S','A','B','C','D','◎','○','△','✕']:
@@ -179,7 +180,6 @@ def scrape_kissfx_day(date_str):
                 break
 
         importance = max(text_imp, RANK_TO_IMP.get(rank, 1))
-
         forecast = clean(tds[4]) if len(tds) > 4 else '-'
         prev     = clean(tds[5]) if len(tds) > 5 else '-'
 
@@ -209,6 +209,9 @@ def build_data():
     print('Fetching みんかぶFX...')
     minkabu_data = scrape_minkabu(monday_str)
 
+    # デバッグ: 取得できた日付キーを確認
+    print(f'  取得日付キー: {list(minkabu_data.keys())}')
+
     print('Fetching 羊飼いFXブログ...')
     kissfx_by_date = {}
     for dt in weekdays:
@@ -222,9 +225,12 @@ def build_data():
         ja_date     = f"{dt.month}月{dt.day}日({WDAY[dt.weekday()]})"
         minkabu_key = dt.strftime('%Y年%m月%d日(') + WDAY[dt.weekday()] + ')'
 
+        mb = minkabu_data.get(minkabu_key, [])
+        print(f'  {ja_date}: みんかぶ{len(mb)}件 / kissfx{len(kissfx_by_date.get(ja_key,[]))}件')
+
         days_out.append({
             'date':    ja_date,
-            'minkabu': minkabu_data.get(minkabu_key, []),
+            'minkabu': mb,
             'kissfx':  kissfx_by_date.get(ja_key, []),
         })
 
@@ -235,7 +241,6 @@ def build_data():
     )
     this_week = {'week_range': week_range, 'days': days_out}
 
-    # 既存data.jsonの過去週を保持して今週を更新
     try:
         with open('data.json', 'r', encoding='utf-8') as f:
             existing = json.load(f)
