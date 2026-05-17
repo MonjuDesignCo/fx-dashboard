@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="FX Dashboard">
+<meta name="theme-color" content="#0a0e1a">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.png">
+<title>FX Weekly Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0e1a;
+  --bg2: #111827;
+  --bg3: #1a2236;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #e8eaf0;
+  --text2: #8892a4;
+  --text3: #4a5568;
+  --accent: #3b82f6;
+  --accent2: #1d4ed8;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --purple: #8b5cf6;
+  --mono: 'DM Mono', monospace;
+  --sans: 'Noto Sans JP', sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 14px; }
+body { min-height: 100vh; padding-bottom: 80px; }
+
+/* Header */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(10,14,26,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border2);
+  padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-title { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; color: var(--text2); text-transform: uppercase; }
+.header-date { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.update-badge {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 10px; color: var(--text3);
+  border: 0.5px solid var(--border); border-radius: 20px; padding: 3px 8px;
+}
+.update-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+/* Week banner */
+.week-banner {
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  border-bottom: 0.5px solid var(--border);
+  padding: 16px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.week-label { font-size: 11px; color: var(--text3); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 4px; }
+.week-range { font-family: var(--mono); font-size: 15px; color: var(--text); font-weight: 500; }
+.week-focus {
+  font-size: 10px; color: var(--purple);
+  border: 0.5px solid rgba(139,92,246,0.3);
+  background: rgba(139,92,246,0.08);
+  padding: 3px 8px; border-radius: 4px;
+  max-width: 160px; text-align: right; line-height: 1.5;
+}
+
+/* Filters */
+.filters {
+  padding: 10px 16px;
+  display: flex; gap: 8px; overflow-x: auto;
+  border-bottom: 0.5px solid var(--border);
+  scrollbar-width: none;
+}
+.filters::-webkit-scrollbar { display: none; }
+.filter-btn {
+  flex-shrink: 0;
+  padding: 5px 12px; border-radius: 20px; font-size: 11px;
+  border: 0.5px solid var(--border2); background: transparent;
+  color: var(--text2); cursor: pointer; font-family: var(--sans);
+  transition: all 0.15s;
+}
+.filter-btn.active { background: var(--accent2); border-color: var(--accent); color: #fff; }
+
+/* Day blocks */
+.day-block { border-bottom: 0.5px solid var(--border); }
+.day-header {
+  padding: 10px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--bg2); cursor: pointer;
+  border-left: 3px solid transparent;
+  transition: border-color 0.2s;
+}
+.day-header.has-focus { border-left-color: var(--purple); }
+.day-header.today { border-left-color: var(--accent); }
+.day-name { font-size: 12px; font-weight: 500; color: var(--text); }
+.day-meta { font-size: 10px; color: var(--text3); margin-top: 2px; }
+.day-count {
+  font-family: var(--mono); font-size: 10px; color: var(--text3);
+  background: var(--bg3); padding: 2px 7px; border-radius: 10px;
+}
+
+/* Focus section */
+.focus-section {
+  background: rgba(139,92,246,0.05);
+  border-bottom: 0.5px solid rgba(139,92,246,0.15);
+  padding: 10px 16px;
+}
+.focus-label {
+  font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 6px; display: flex; align-items: center; gap-5px;
+}
+.focus-label::before { content:''; display:inline-block; width:14px; height:0.5px; background:var(--purple); margin-right:6px; }
+.focus-item { font-size: 11px; color: var(--text2); line-height: 1.8; }
+.focus-item::before { content: '·  '; color: var(--purple); }
+
+/* Indicator rows */
+.indicators { }
+.ind-row {
+  padding: 10px 16px;
+  border-bottom: 0.5px solid var(--border);
+  display: grid;
+  grid-template-columns: 44px 24px 1fr 56px 40px;
+  gap: 8px; align-items: center;
+  transition: background 0.1s;
+}
+.ind-row:hover { background: rgba(255,255,255,0.02); }
+.ind-row.high { border-left: 2px solid var(--gold); padding-left: 14px; }
+.ind-time { font-family: var(--mono); font-size: 11px; color: var(--text3); }
+.ind-flag { font-size: 14px; line-height: 1; }
+.ind-name { font-size: 11px; color: var(--text); line-height: 1.4; }
+.ind-name-sub { font-size: 10px; color: var(--text3); margin-top: 1px; }
+.ind-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+.stars { font-size: 9px; letter-spacing: -1px; }
+.st-on { color: var(--gold); }
+.st-off { color: var(--border2); }
+.rank { font-size: 10px; font-weight: 500; font-family: var(--mono); }
+.rank-S { color: var(--red); }
+.rank-A { color: var(--gold); }
+.rank-B { color: var(--green); }
+.rank-C { color: var(--text3); }
+.pips { font-family: var(--mono); font-size: 10px; }
+.pips-pos { color: var(--green); }
+.pips-neg { color: var(--red); }
+.pips-na { color: var(--text3); }
+
+/* Values row */
+.ind-vals {
+  grid-column: 3 / 6;
+  display: flex; gap: 12px; margin-top: 4px;
+}
+.val-item { font-size: 10px; color: var(--text3); }
+.val-item span { color: var(--text2); margin-left: 2px; font-family: var(--mono); }
+
+/* No data */
+.no-data { padding: 16px; text-align: center; font-size: 11px; color: var(--text3); }
+
+/* Bottom nav */
+.bottom-nav {
+  position: fixed; bottom: 0; left: 0; right: 0;
+  background: rgba(10,14,26,0.95);
+  backdrop-filter: blur(12px);
+  border-top: 0.5px solid var(--border2);
+  display: flex;
+  padding: 8px 0 max(8px, env(safe-area-inset-bottom));
+}
+.nav-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 4px; background: transparent; border: none; cursor: pointer;
+  color: var(--text3); font-family: var(--sans); font-size: 9px; letter-spacing: 0.05em;
+  transition: color 0.15s;
+}
+.nav-btn.active { color: var(--accent); }
+.nav-icon { font-size: 18px; line-height: 1; }
+
+/* Loading */
+.loading {
+  display: flex; flex-direction: column; align-items: center;
+  justify-content: center; min-height: 50vh; gap: 12px;
+  color: var(--text3); font-size: 12px;
+}
+.spinner {
+  width: 24px; height: 24px;
+  border: 1.5px solid var(--border2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Error */
+.error-box {
+  margin: 16px; padding: 16px;
+  border: 0.5px solid rgba(239,68,68,0.3);
+  border-radius: 8px; background: rgba(239,68,68,0.05);
+  text-align: center; font-size: 12px; color: var(--red);
+}
+.retry-btn {
+  margin-top: 10px; padding: 6px 16px;
+  background: transparent; border: 0.5px solid var(--red);
+  border-radius: 4px; color: var(--red); font-size: 11px;
+  cursor: pointer; font-family: var(--sans);
+}
+
+/* Badge chips */
+.chip {
+  display: inline-block; padding: 1px 5px; border-radius: 3px;
+  font-size: 9px; font-weight: 500; margin-right: 4px;
+}
+.chip-minkabu { background: rgba(59,130,246,0.15); color: #60a5fa; }
+.chip-kissfx { background: rgba(16,185,129,0.15); color: #34d399; }
+
+/* Responsive desktop */
+@media (min-width: 600px) {
+  body { max-width: 480px; margin: 0 auto; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div>
+    <div class="header-title">FX Dashboard</div>
+    <div class="header-date" id="headerDate"></div>
+  </div>
+  <div class="update-badge">
+    <span class="update-dot"></span>
+    <span id="updateTime">読込中...</span>
+  </div>
+</div>
+
+<div class="week-banner">
+  <div>
+    <div class="week-label">今週の期間</div>
+    <div class="week-range" id="weekRange">—</div>
+  </div>
+  <div class="week-focus" id="weekTheme">—</div>
+</div>
+
+<div class="filters" id="filters">
+  <button class="filter-btn active" data-filter="all" onclick="setFilter('all',this)">すべて</button>
+  <button class="filter-btn" data-filter="high" onclick="setFilter('high',this)">★★★のみ</button>
+  <button class="filter-btn" data-filter="us" onclick="setFilter('us',this)">🇺🇸 米国</button>
+  <button class="filter-btn" data-filter="jp" onclick="setFilter('jp',this)">🇯🇵 日本</button>
+  <button class="filter-btn" data-filter="gb" onclick="setFilter('gb',this)">🇬🇧 英国</button>
+  <button class="filter-btn" data-filter="cn" onclick="setFilter('cn',this)">🇨🇳 中国</button>
+  <button class="filter-btn" data-filter="eu" onclick="setFilter('eu',this)">🇪🇺 欧州</button>
+</div>
+
+<div id="main">
+  <div class="loading"><div class="spinner"></div>データを読み込み中...</div>
+</div>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" onclick="showTab('calendar')">
+    <span class="nav-icon">📅</span>指標
+  </button>
+  <button class="nav-btn" onclick="showTab('focus')">
+    <span class="nav-icon">🎯</span>注目材料
+  </button>
+  <button class="nav-btn" onclick="showTab('sources')">
+    <span class="nav-icon">🔗</span>ソース
+  </button>
+</nav>
+
+<script>
+let DATA = null;
+let currentFilter = 'all';
+let currentTab = 'calendar';
+
+const COUNTRY_FILTER = {
+  us: ['米','アメリカ'],
+  jp: ['日','日本'],
+  gb: ['英','英国'],
+  cn: ['中','中国'],
+  eu: ['欧','ユーロ','独','仏']
+};
+
+async function loadData() {
+  try {
+    const res = await fetch('data.json?t=' + Date.now());
+    if (!res.ok) throw new Error('データ取得失敗');
+    DATA = await res.json();
+    renderAll();
+  } catch(e) {
+    document.getElementById('main').innerHTML = `
+      <div class="error-box">
+        データを読み込めませんでした<br>
+        <small style="color:var(--text3);margin-top:4px;display:block">自動更新は毎朝6時に実行されます</small>
+        <button class="retry-btn" onclick="loadData()">再試行</button>
+      </div>`;
+  }
+}
+
+function renderAll() {
+  if (!DATA) return;
+  document.getElementById('weekRange').textContent = DATA.week_range || '—';
+  document.getElementById('weekTheme').textContent = DATA.week_theme || '—';
+  document.getElementById('updateTime').textContent = DATA.updated_at ? DATA.updated_at.slice(5,16).replace('T',' ') + ' 更新' : '—';
+  const now = new Date();
+  document.getElementById('headerDate').textContent =
+    now.getFullYear() + '/' + String(now.getMonth()+1).padStart(2,'0') + '/' + String(now.getDate()).padStart(2,'0') + '(' + '日月火水木金土'[now.getDay()] + ')';
+
+  if (currentTab === 'calendar') renderCalendar();
+  else if (currentTab === 'focus') renderFocus();
+  else renderSources();
+}
+
+function setFilter(f, el) {
+  currentFilter = f;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  if (currentTab === 'calendar') renderCalendar();
+}
+
+function showTab(tab) {
+  currentTab = tab;
+  document.querySelectorAll('.nav-btn').forEach((b,i) => {
+    b.classList.toggle('active', ['calendar','focus','sources'][i] === tab);
+  });
+  renderAll();
+}
+
+function matchFilter(name) {
+  if (currentFilter === 'all') return true;
+  if (currentFilter === 'high') return false; // handled by importance
+  const keys = COUNTRY_FILTER[currentFilter] || [];
+  return keys.some(k => name.includes(k));
+}
+
+function stars(n) {
+  let s = '';
+  for (let i = 1; i <= 3; i++) s += `<span class="${i<=n?'st-on':'st-off'}">★</span>`;
+  return `<span class="stars">${s}</span>`;
+}
+
+function pipsHtml(v) {
+  if (!v || v === '---') return '<span class="pips pips-na">—</span>';
+  const n = parseFloat(v);
+  if (isNaN(n)) return `<span class="pips pips-na">${v}</span>`;
+  return `<span class="pips ${n>0?'pips-pos':n<0?'pips-neg':'pips-na'}">${n>0?'+':''}${v}pips</span>`;
+}
+
+function rankHtml(r) {
+  if (!r) return '';
+  return `<span class="rank rank-${r}">${r}</span>`;
+}
+
+function flagFor(name) {
+  const map = [
+    [['米','アメリカ'],'🇺🇸'],[['英','英国'],'🇬🇧'],[['中','中国'],'🇨🇳'],
+    [['日','日本'],'🇯🇵'],[['欧','ユーロ'],'🇪🇺'],[['豪','オーストラリア'],'🇦🇺'],
+    [['加','カナダ'],'🇨🇦'],[['独'],'🇩🇪'],[['仏'],'🇫🇷'],[['NZ','ニュージーランド'],'🇳🇿']
+  ];
+  for (const [keys, flag] of map) {
+    if (keys.some(k => name.includes(k))) return flag;
+  }
+  return '🌐';
+}
+
+function renderCalendar() {
+  if (!DATA || !DATA.days) return;
+  const today = new Date().toLocaleDateString('ja-JP',{month:'numeric',day:'numeric'}).replace(/\//g,'/');
+  let html = '';
+
+  for (const day of DATA.days) {
+    let rows = day.indicators || [];
+    if (currentFilter === 'high') rows = rows.filter(r => r.importance >= 3);
+    else if (currentFilter !== 'all') rows = rows.filter(r => matchFilter(r.name));
+
+    const hasFocus = day.focus && day.focus.length > 0;
+    if (!rows.length && !hasFocus) continue;
+
+    const isToday = day.date && day.date.includes(today.split('/')[1] + '月' + today.split('/')[0]);
+
+    html += `<div class="day-block">
+      <div class="day-header ${hasFocus?'has-focus':''} ${isToday?'today':''}">
+        <div>
+          <div class="day-name">${day.date}</div>
+          <div class="day-meta">${isToday?'<span style="color:var(--accent);font-size:9px">▶ 本日</span>':''}</div>
+        </div>
+        <div class="day-count">${rows.length}件</div>
+      </div>`;
+
+    if (hasFocus && currentFilter === 'all') {
+      html += `<div class="focus-section">
+        <div class="focus-label">羊飼いFXブログ 注目材料</div>`;
+      for (const f of day.focus) {
+        html += `<div class="focus-item">${f}</div>`;
+      }
+      html += `</div>`;
+    }
+
+    if (rows.length) {
+      html += `<div class="indicators">`;
+      for (const r of rows) {
+        const isHigh = r.importance >= 3;
+        html += `<div class="ind-row ${isHigh?'high':''}">
+          <div class="ind-time">${r.time||'—'}</div>
+          <div class="ind-flag">${flagFor(r.name)}</div>
+          <div>
+            <div class="ind-name">${r.name}</div>
+            <div style="display:flex;gap:6px;margin-top:3px;align-items:center">
+              ${stars(r.importance||0)}
+              ${r.rank ? rankHtml(r.rank) : ''}
+              ${pipsHtml(r.pips)}
+            </div>
+            <div class="ind-vals">
+              <span class="val-item">前回<span>${r.prev||'—'}</span></span>
+              <span class="val-item">予想<span>${r.forecast||'—'}</span></span>
+              <span class="val-item">結果<span style="color:${r.result&&r.result!=='---'?'var(--green)':'var(--text3)'}">${r.result||'—'}</span></span>
+            </div>
+          </div>
+        </div>`;
+      }
+      html += `</div>`;
+    } else {
+      html += `<div class="no-data">条件に一致する指標なし</div>`;
+    }
+    html += `</div>`;
+  }
+
+  document.getElementById('main').innerHTML = html || '<div class="no-data" style="padding:32px">条件に一致する指標がありません</div>';
+}
+
+function renderFocus() {
+  if (!DATA || !DATA.days) return;
+  let html = '';
+  for (const day of DATA.days) {
+    if (!day.focus || !day.focus.length) continue;
+    html += `<div class="day-block">
+      <div class="day-header has-focus">
+        <div class="day-name">${day.date}</div>
+      </div>
+      <div class="focus-section" style="padding:12px 16px">
+        <div class="focus-label">注目材料</div>`;
+    for (const f of day.focus) {
+      html += `<div class="focus-item" style="margin-bottom:2px">${f}</div>`;
+    }
+    html += `</div></div>`;
+  }
+  document.getElementById('main').innerHTML = html || '<div class="no-data" style="padding:32px">データなし</div>';
+}
+
+function renderSources() {
+  document.getElementById('main').innerHTML = `
+    <div style="padding:16px;display:flex;flex-direction:column;gap:12px">
+      <a href="https://fx.minkabu.jp/indicators" target="_blank"
+         style="display:block;padding:14px 16px;background:var(--bg2);border:0.5px solid var(--border2);border-radius:8px;text-decoration:none">
+        <div class="chip chip-minkabu">みんかぶFX</div>
+        <div style="font-size:13px;color:var(--text);margin-top:6px">経済指標カレンダー</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:3px">fx.minkabu.jp/indicators</div>
+      </a>
+      <a href="https://kissfx.com/" target="_blank"
+         style="display:block;padding:14px 16px;background:var(--bg2);border:0.5px solid var(--border2);border-radius:8px;text-decoration:none">
+        <div class="chip chip-kissfx">羊飼いFXブログ</div>
+        <div style="font-size:13px;color:var(--text);margin-top:6px">今週の注目材料スケジュール</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:3px">kissfx.com</div>
+      </a>
+      <div style="padding:12px;background:var(--bg2);border:0.5px solid var(--border);border-radius:8px">
+        <div style="font-size:10px;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px">データ情報</div>
+        <div style="font-size:11px;color:var(--text2);line-height:2">
+          更新タイミング：毎朝 6:00 (JST)<br>
+          更新方式：GitHub Actions 自動実行<br>
+          ホスティング：GitHub Pages<br>
+          最終更新：${DATA && DATA.updated_at ? DATA.updated_at.slice(0,16).replace('T',' ') : '—'}
+        </div>
+      </div>
+    </div>`;
+}
+
+loadData();
+</script>
+</body>
+</html>
