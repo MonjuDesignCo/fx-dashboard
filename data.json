@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-03T01:23:41.607601+09:00",
+  "updated_at": "2026-07-03T07:03:24.224665+09:00",
   "weeks": [
     {
       "week_range": "4/1(水) — 4/5(日)",
@@ -5360,7 +5360,7 @@
               "name": "中)RatingDog(旧財新)非製造業PMI",
               "importance": 1,
               "rank": "",
-              "forecast": "53.5",
+              "forecast": "53.0",
               "prev": "54.4"
             },
             {
@@ -5370,7 +5370,7 @@
               "name": "仏)鉱工業生産 [前月比/前年比]",
               "importance": 2,
               "rank": "",
-              "forecast": "-0.3%",
+              "forecast": "-0.4%",
               "prev": "+0.1%"
             },
             {
@@ -5410,7 +5410,7 @@
               "name": "英)非製造業PMI【改定値】",
               "importance": 1,
               "rank": "",
-              "forecast": "48.9",
+              "forecast": "48.8",
               "prev": "48.7"
             },
             {
