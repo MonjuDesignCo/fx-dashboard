@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-19T00:16:21.473315+09:00",
+  "updated_at": "2026-07-20T06:44:53.942560+09:00",
   "weeks": [
     {
       "week_range": "4/1(水) — 4/5(日)",
@@ -6573,27 +6573,442 @@
         {
           "date": "7月20日(月)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "07:45",
+              "country": "NZ",
+              "flag": "🇳🇿",
+              "name": "NZ)貿易収支",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "+8.00億"
+            },
+            {
+              "time": "08:01",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)ライトムーブ住宅価格 [前月比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-0.6%"
+            },
+            {
+              "time": "15:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "独)生産者物価指数 [前月比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-0.3%",
+              "prev": "+0.3%"
+            },
+            {
+              "time": "21:30",
+              "country": "加",
+              "flag": "🇨🇦",
+              "name": "加)消費者物価指数[前月比/前年比] →過去発表時[カナダ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-0.2%",
+              "prev": "+1.0%"
+            },
+            {
+              "time": "23:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)景気先行指数 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-0.1%",
+              "prev": "+0.1%"
+            },
+            {
+              "time": "翌07:45",
+              "country": "NZ",
+              "flag": "🇳🇿",
+              "name": "NZ)第2四半期消費者物価指数 [前期比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+1.4%",
+              "prev": "+0.9%"
+            }
+          ]
         },
         {
           "date": "7月21日(火)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "07:45",
+              "country": "NZ",
+              "flag": "🇳🇿",
+              "name": "NZ)第2四半期消費者物価指数 [前期比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+1.4%",
+              "prev": "+0.9%"
+            },
+            {
+              "time": "15:00",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)失業率 →過去発表時[ポンドドル][ポンド円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "4.5%"
+            },
+            {
+              "time": "18:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "独)ZEW景況感調査 →過去発表時[ユーロドル][ユーロ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+16.0",
+              "prev": "+10.5"
+            },
+            {
+              "time": "20:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "独)ナーゲル独連銀総裁の発言",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "20:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)注目度の高い経済指標の発表はない",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            }
+          ]
         },
         {
           "date": "7月22日(水)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "08:50",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)貿易収支(通関ベース)",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-1199億",
+              "prev": "-3786億"
+            },
+            {
+              "time": "09:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "豪)ウエストパック景気先行指数",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-0.04%"
+            },
+            {
+              "time": "09:30",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)40年利付国債入札",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            },
+            {
+              "time": "15:00",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)消費者物価指数[前月比/前年比] →過去発表時[ポンドドル][ポンド円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+0.1%",
+              "prev": "+0.2%"
+            },
+            {
+              "time": "15:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "+3.0%",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "米)MBA住宅ローン申請指数"
+            },
+            {
+              "time": "23:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)週間原油在庫 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-169.2万"
+            },
+            {
+              "time": "26:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)20年債入札 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "130億ドル",
+              "prev": "-"
+            },
+            {
+              "time": "26:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)注目度の高い経済指標の発表はない",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            },
+            {
+              "time": "26:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)テスラ決算",
+              "importance": 2,
+              "rank": "",
+              "forecast": "大手企業決算",
+              "prev": "-"
+            }
+          ]
         },
         {
           "date": "7月23日(木)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "10:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "豪)失業率→過去発表時[豪ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "4.4%",
+              "prev": "4.4%"
+            },
+            {
+              "time": "10:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "+1.50万人",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            },
+            {
+              "time": "19:00",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)CBI企業動向調査",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-40",
+              "prev": "-45"
+            },
+            {
+              "time": "20:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "ト)TCMB政策金利＆声明発表",
+              "importance": 1,
+              "rank": "",
+              "forecast": "37.00%据え置き",
+              "prev": "37.00%据え置き"
+            },
+            {
+              "time": "21:15",
+              "country": "欧",
+              "flag": "🇪🇺",
+              "name": "欧)ECB政策金利＆声明発表 →過去発表時[ユーロドル][ユーロ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "2.40%据え置き",
+              "prev": "25bp 利上げ 2.40%"
+            },
+            {
+              "time": "21:30",
+              "country": "加",
+              "flag": "🇨🇦",
+              "name": "加)小売売上高 →過去発表時[カナダ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+1.0%",
+              "prev": "+0.5%"
+            },
+            {
+              "time": "21:45",
+              "country": "欧",
+              "flag": "🇪🇺",
+              "name": "欧)ラガルドECB総裁の記者会見 →過去発表時[ユーロドル][ユーロ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "22:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "南ア)SARB政策金利＆声明発表",
+              "importance": 1,
+              "rank": "",
+              "forecast": "25bp 利上げ 7.25%",
+              "prev": "25bp 利上げ 7.00%"
+            },
+            {
+              "time": "23:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)週間天然ガス貯蔵量",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "+41"
+            },
+            {
+              "time": "24:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)カンザスシティ連銀製造業活動指数",
+              "importance": 1,
+              "rank": "",
+              "forecast": "+13",
+              "prev": "+11"
+            },
+            {
+              "time": "26:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)10年インフレ連動債(TIPS)入札 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "210億ドル",
+              "prev": "-"
+            }
+          ]
         },
         {
           "date": "7月24日(金)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "08:01",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)GFK消費者信頼感調査",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-21",
+              "prev": "-23"
+            },
+            {
+              "time": "08:30",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)全国消費者物価指数",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+1.7%",
+              "prev": "+1.5%"
+            },
+            {
+              "time": "15:00",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)小売売上高[前月比/前年比] →過去発表時[ポンドドル][ポンド円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-0.1%",
+              "prev": "+1.2%"
+            },
+            {
+              "time": "16:15",
+              "country": "仏",
+              "flag": "🇫🇷",
+              "name": "仏)製造業PMI【速報値】",
+              "importance": 1,
+              "rank": "",
+              "forecast": "51.2",
+              "prev": "51.2"
+            },
+            {
+              "time": "16:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "独)製造業PMI【速報値】 →過去発表時[ユーロドル][ユーロ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "50.5",
+              "prev": "50.3"
+            },
+            {
+              "time": "17:00",
+              "country": "欧",
+              "flag": "🇪🇺",
+              "name": "欧)製造業PMI【速報値】 →過去発表時[ユーロドル][ユーロ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "51.5",
+              "prev": "51.4"
+            },
+            {
+              "time": "17:30",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)製造業PMI【速報値】 →過去発表時[ポンドドル][ポンド円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "52.0",
+              "prev": "52.5"
+            },
+            {
+              "time": "21:30",
+              "country": "加",
+              "flag": "🇨🇦",
+              "name": "加)鉱工業製品価格",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "+1.2%"
+            },
+            {
+              "time": "22:45",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)製造業PMI【速報値】 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "54.5",
+              "prev": "53.9"
+            },
+            {
+              "time": "23:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)新築住宅販売件数 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "60.0万件",
+              "prev": "58.0万件"
+            }
+          ]
         }
       ]
     }
