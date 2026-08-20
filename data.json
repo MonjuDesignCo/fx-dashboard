@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-21T06:22:59.419095+09:00",
+  "updated_at": "2026-08-21T06:50:03.155725+09:00",
   "weeks": [
     {
       "week_range": "4/1(水) — 4/5(日)",
@@ -9079,13 +9079,23 @@
               "prev": "+0.23億"
             },
             {
+              "time": "08:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "豪)ブロックRBA総裁の発言→過去発表時[豪ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
               "time": "08:01",
               "country": "英",
               "flag": "🇬🇧",
               "name": "英)GFK消費者信頼感調査",
               "importance": 1,
               "rank": "",
-              "forecast": "-17",
+              "forecast": "-18",
               "prev": "-17"
             },
             {
@@ -9115,7 +9125,7 @@
               "name": "仏)製造業PMI【速報値】",
               "importance": 1,
               "rank": "",
-              "forecast": "50.1",
+              "forecast": "50.0",
               "prev": "49.8"
             },
             {
@@ -9135,7 +9145,7 @@
               "name": "欧)製造業PMI【速報値】 →過去発表時[ユーロドル][ユーロ円]",
               "importance": 2,
               "rank": "",
-              "forecast": "51.7",
+              "forecast": "51.8",
               "prev": "51.9"
             },
             {
@@ -9165,7 +9175,7 @@
               "name": "米)製造業PMI【速報値】 →過去発表時[ユーロドル][ドル円]",
               "importance": 2,
               "rank": "",
-              "forecast": "53.7",
+              "forecast": "54.0",
               "prev": "53.9"
             }
           ]
