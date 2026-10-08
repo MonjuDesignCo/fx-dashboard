@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-08T02:23:08.279856+09:00",
+  "updated_at": "2026-10-08T09:54:09.347377+09:00",
   "weeks": [
     {
       "week_range": "4/1(水) — 4/5(日)",
@@ -13284,7 +13284,7 @@
               "name": "日)貿易収支(国際収支)",
               "importance": 1,
               "rank": "",
-              "forecast": "-8031億",
+              "forecast": "-7152億",
               "prev": "-3999億"
             },
             {
@@ -13318,20 +13318,30 @@
               "prev": "+213億"
             },
             {
-              "time": "18:15",
+              "time": "17:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ウォラーFRB理事の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "18:00",
               "country": "英",
               "flag": "🇬🇧",
-              "name": "英)グリーンMPC委員の発言",
+              "name": "英)ピルMPC理事の発言",
               "importance": 1,
               "rank": "",
               "forecast": "要人発言",
               "prev": "-"
             },
             {
-              "time": "19:30",
+              "time": "18:15",
               "country": "英",
               "flag": "🇬🇧",
-              "name": "英)ピルMPC理事の発言",
+              "name": "英)グリーンMPC委員の発言",
               "importance": 1,
               "rank": "",
               "forecast": "要人発言",
@@ -13398,6 +13408,16 @@
               "prev": "+64"
             },
             {
+              "time": "23:40",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)カシュカリ：ミネアポリス連銀総裁の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
               "time": "26:00",
               "country": "米",
               "flag": "🇺🇸",
@@ -13413,16 +13433,6 @@
               "flag": "🇺🇸",
               "name": "米)ムサレム：セントルイス連銀総裁の発言(投票権なし)",
               "importance": 1,
-              "rank": "",
-              "forecast": "要人発言",
-              "prev": "-"
-            },
-            {
-              "time": "29:30",
-              "country": "米",
-              "flag": "🇺🇸",
-              "name": "米)ウォラーFRB理事の発言(投票権あり)",
-              "importance": 2,
               "rank": "",
               "forecast": "要人発言",
               "prev": "-"
