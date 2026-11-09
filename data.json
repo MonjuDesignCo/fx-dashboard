@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-08T02:42:13.152116+09:00",
+  "updated_at": "2026-11-09T09:25:23.801288+09:00",
   "weeks": [
     {
       "week_range": "4/1(水) — 4/5(日)",
@@ -16063,27 +16063,612 @@
         {
           "date": "11月9日(月)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "10:30",
+              "country": "中",
+              "flag": "🇨🇳",
+              "name": "中)消費者物価指数",
+              "importance": 1,
+              "rank": "",
+              "forecast": "+0.8%",
+              "prev": "+0.9%"
+            },
+            {
+              "time": "14:00",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)景気先行CI指数【速報値】",
+              "importance": 1,
+              "rank": "",
+              "forecast": "116.6",
+              "prev": "118.0"
+            },
+            {
+              "time": "14:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "119.4",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            },
+            {
+              "time": "16:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "独)貿易収支",
+              "importance": 1,
+              "rank": "",
+              "forecast": "+187億",
+              "prev": "+195億"
+            },
+            {
+              "time": "22:40",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ボウマンFRB副議長の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "24:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)卸売在庫【確報値】 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+0.6%",
+              "prev": "+0.6%"
+            },
+            {
+              "time": "26:15",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)バーキン：リッチモンド連銀総裁の発言(投票権なし)",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "26:25",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)ベイリーBOE総裁の発言 →過去発表時[ポンドドル][ポンド円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "27:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)3年債入札 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "580億ドル",
+              "prev": "-"
+            },
+            {
+              "time": "27:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)注目度の高い経済指標の発表はない",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            }
+          ]
         },
         {
           "date": "11月10日(火)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "08:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "豪)ウエストパック消費者信頼感指数",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "80.4"
+            },
+            {
+              "time": "08:50",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)貿易収支(国際収支)",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-2258億",
+              "prev": "-6877億"
+            },
+            {
+              "time": "09:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "豪)NAB企業景況感指数",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-1"
+            },
+            {
+              "time": "09:30",
+              "country": "中",
+              "flag": "🇨🇳",
+              "name": "中)貿易収支",
+              "importance": 1,
+              "rank": "",
+              "forecast": "+1259.0億",
+              "prev": "+1335.3億"
+            },
+            {
+              "time": "12:35",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)30年利付国債入札",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            },
+            {
+              "time": "14:00",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)景気ウォッチャー調査[現状判断DI]",
+              "importance": 1,
+              "rank": "",
+              "forecast": "47.0",
+              "prev": "47.0"
+            },
+            {
+              "time": "18:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ウォラーFRB理事の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "20:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)NFIB中小企業楽観指数",
+              "importance": 1,
+              "rank": "",
+              "forecast": "98.0",
+              "prev": "97.9"
+            },
+            {
+              "time": "21:30",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)ロンバルデッリBOE副総裁の発言",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "22:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)消費者物価指数[前月比/前年比] →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+0.3%",
+              "prev": "+0.6%"
+            },
+            {
+              "time": "22:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "+0.2%",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            },
+            {
+              "time": "23:35",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ローガン：ダラス連銀総裁の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "27:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)10年債入札 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "420億ドル",
+              "prev": "-"
+            },
+            {
+              "time": "27:30",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)ピルMPC理事の発言",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "29:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ボウマンFRB副議長の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            }
+          ]
         },
         {
           "date": "11月11日(水)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "08:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ボウマンFRB副議長の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "15:00",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)工作機械受注",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "+60.4%"
+            },
+            {
+              "time": "16:00",
+              "country": "",
+              "flag": "🌐",
+              "name": "独)消費者物価指数【改定値】 [前月比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-0.2%",
+              "prev": "-0.2%"
+            },
+            {
+              "time": "17:20",
+              "country": "",
+              "flag": "🌐",
+              "name": "独)ナーゲル独連銀総裁の発言",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "18:45",
+              "country": "欧",
+              "flag": "🇪🇺",
+              "name": "欧)ラガルドECB総裁の発言→過去発表時[ユーロドル][ユーロ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "21:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)MBA住宅ローン申請指数",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-1.2%"
+            },
+            {
+              "time": "21:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)注目度の高い経済指標の発表はない",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            }
+          ]
         },
         {
           "date": "11月12日(木)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "08:50",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)国内企業物価指数 [前月比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+0.3%",
+              "prev": "-0.3%"
+            },
+            {
+              "time": "09:01",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)RICS住宅価格",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-32%",
+              "prev": "-32%"
+            },
+            {
+              "time": "10:30",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)浅田日銀審議委員の発言(あいさつ)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "10:30",
+              "country": "日",
+              "flag": "🇯🇵",
+              "name": "日)浅田日銀審議委員の発言(記者会見)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "16:00",
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)第3四半期GDP【速報値】→過去発表時[ポンドドル][ポンド円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+0.7%",
+              "prev": "+0.5%"
+            },
+            {
+              "time": "18:00",
+              "country": "欧",
+              "flag": "🇪🇺",
+              "name": "欧)ECB月例報告",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-"
+            },
+            {
+              "time": "22:30",
+              "country": "加",
+              "flag": "🇨🇦",
+              "name": "加)住宅建設許可",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-4.1%",
+              "prev": "+8.8%"
+            },
+            {
+              "time": "23:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ハマック：クリーブランド連銀総裁の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "24:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)中古住宅販売件数 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "385万件",
+              "prev": "399万件"
+            },
+            {
+              "time": "25:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)グールズビー：シカゴ連銀総裁の発言(投票権なし)",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "26:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)週間原油在庫 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-86.5万"
+            },
+            {
+              "time": "26:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "独)ナーゲル独連銀総裁の発言",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "27:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)30年債入札 →過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "250億ドル",
+              "prev": "-"
+            },
+            {
+              "time": "27:10",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)デイリー：サンフランシスコ連銀総裁の発言(投票権なし)",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "28:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)財政収支→過去発表時[ユーロドル][ドル円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-3210億",
+              "prev": "-269億"
+            },
+            {
+              "time": "28:30",
+              "country": "欧",
+              "flag": "🇪🇺",
+              "name": "欧)ラガルドECB総裁の発言→過去発表時[ユーロドル][ユーロ円]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "翌06:30",
+              "country": "NZ",
+              "flag": "🇳🇿",
+              "name": "NZ)製造業PMI",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "56.5"
+            }
+          ]
         },
         {
           "date": "11月13日(金)",
           "minkabu": [],
-          "kissfx": []
+          "kissfx": [
+            {
+              "time": "06:30",
+              "country": "NZ",
+              "flag": "🇳🇿",
+              "name": "NZ)製造業PMI",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "56.5"
+            },
+            {
+              "time": "08:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ウィリアムズ：NY連銀総裁の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "16:30",
+              "country": "",
+              "flag": "🌐",
+              "name": "ス)生産者輸入価格[前月比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "-",
+              "prev": "-0.2%"
+            },
+            {
+              "time": "16:45",
+              "country": "仏",
+              "flag": "🇫🇷",
+              "name": "仏)消費者物価指数【改定値】 [前期比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+0.4%",
+              "prev": "+0.4%"
+            },
+            {
+              "time": "19:00",
+              "country": "欧",
+              "flag": "🇪🇺",
+              "name": "欧)第3四半期GDP【改定値】 [前期比/前年比]",
+              "importance": 2,
+              "rank": "",
+              "forecast": "+0.4%",
+              "prev": "+0.4%"
+            },
+            {
+              "time": "22:30",
+              "country": "加",
+              "flag": "🇨🇦",
+              "name": "加)製造業出荷",
+              "importance": 1,
+              "rank": "",
+              "forecast": "+0.1%",
+              "prev": "+1.5%"
+            },
+            {
+              "time": "24:30",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)週間天然ガス貯蔵量",
+              "importance": 1,
+              "rank": "",
+              "forecast": "-",
+              "prev": "+77"
+            },
+            {
+              "time": "24:50",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)ボウマンFRB副議長の発言(投票権あり)",
+              "importance": 2,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            },
+            {
+              "time": "26:00",
+              "country": "米",
+              "flag": "🇺🇸",
+              "name": "米)デイリー：サンフランシスコ連銀総裁の発言(投票権なし)",
+              "importance": 1,
+              "rank": "",
+              "forecast": "要人発言",
+              "prev": "-"
+            }
+          ]
         }
       ]
     }
