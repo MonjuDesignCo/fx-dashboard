@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-18T22:33:57.340779+09:00",
+  "updated_at": "2026-11-19T06:32:06.199359+09:00",
   "weeks": [
     {
       "week_range": "4/1(水) — 4/5(日)",
@@ -17368,6 +17368,16 @@
               "prev": "-"
             },
             {
+              "time": "21:15",
+              "country": "",
+              "flag": "🌐",
+              "name": "南ア)SARB政策金利＆声明発表",
+              "importance": 1,
+              "rank": "",
+              "forecast": "7.25% 据え置き",
+              "prev": "25bp 利上げ 7.25%"
+            },
+            {
               "time": "22:30",
               "country": "欧",
               "flag": "🇪🇺",
@@ -17389,10 +17399,10 @@
             },
             {
               "time": "23:25",
-              "country": "米",
-              "flag": "🇺🇸",
-              "name": "米)ジェファーソンFRB副議長の発言(投票権あり)",
-              "importance": 2,
+              "country": "英",
+              "flag": "🇬🇧",
+              "name": "英)ロンバルデリBOE副総裁の発言",
+              "importance": 1,
               "rank": "",
               "forecast": "要人発言",
               "prev": "-"
@@ -17445,16 +17455,6 @@
               "importance": 2,
               "rank": "",
               "forecast": "190億ドル",
-              "prev": "-"
-            },
-            {
-              "time": "28:00",
-              "country": "米",
-              "flag": "🇺🇸",
-              "name": "米)バーキン：リッチモンド連銀総裁の発言(投票権なし)",
-              "importance": 1,
-              "rank": "",
-              "forecast": "要人発言",
               "prev": "-"
             },
             {
